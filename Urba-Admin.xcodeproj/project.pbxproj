@@ -1,0 +1,539 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8C5F2B991DD24D8400EA0A3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B981DD24D8400EA0A3D /* main.m */; };
+		8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */; };
+		8C5F2B9F1DD24D8500EA0A3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B9E1DD24D8400EA0A3D /* ViewController.m */; };
+		8C5F2BA21DD24D8500EA0A3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */; };
+		8C5F2BA41DD24D8500EA0A3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */; };
+		8C5F2BA71DD24D8500EA0A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */; };
+		8C5F2BB21DD24D8500EA0A3D /* Urba_AdminTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BB11DD24D8500EA0A3D /* Urba_AdminTests.m */; };
+		8C5F2BBD1DD24D8500EA0A3D /* Urba_AdminUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BBC1DD24D8500EA0A3D /* Urba_AdminUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8C5F2BAE1DD24D8500EA0A3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C5F2B8C1DD24D8400EA0A3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5F2B931DD24D8400EA0A3D;
+			remoteInfo = "Urba-Admin";
+		};
+		8C5F2BB91DD24D8500EA0A3D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8C5F2B8C1DD24D8400EA0A3D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C5F2B931DD24D8400EA0A3D;
+			remoteInfo = "Urba-Admin";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8C5F2B941DD24D8400EA0A3D /* Urba-Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urba-Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5F2B981DD24D8400EA0A3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8C5F2B9D1DD24D8400EA0A3D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8C5F2B9E1DD24D8400EA0A3D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		8C5F2BA11DD24D8500EA0A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8C5F2BA61DD24D8500EA0A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8C5F2BA81DD24D8500EA0A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C5F2BAD1DD24D8500EA0A3D /* Urba-AdminTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Urba-AdminTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5F2BB11DD24D8500EA0A3D /* Urba_AdminTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Urba_AdminTests.m; sourceTree = "<group>"; };
+		8C5F2BB31DD24D8500EA0A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C5F2BB81DD24D8500EA0A3D /* Urba-AdminUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Urba-AdminUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C5F2BBC1DD24D8500EA0A3D /* Urba_AdminUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Urba_AdminUITests.m; sourceTree = "<group>"; };
+		8C5F2BBE1DD24D8500EA0A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8C5F2B911DD24D8400EA0A3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5F2BAA1DD24D8500EA0A3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5F2BB51DD24D8500EA0A3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8C5F2B8B1DD24D8400EA0A3D = {
+			isa = PBXGroup;
+			children = (
+				8C5F2B961DD24D8400EA0A3D /* Urba-Admin */,
+				8C5F2BB01DD24D8500EA0A3D /* Urba-AdminTests */,
+				8C5F2BBB1DD24D8500EA0A3D /* Urba-AdminUITests */,
+				8C5F2B951DD24D8400EA0A3D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8C5F2B951DD24D8400EA0A3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8C5F2B941DD24D8400EA0A3D /* Urba-Admin.app */,
+				8C5F2BAD1DD24D8500EA0A3D /* Urba-AdminTests.xctest */,
+				8C5F2BB81DD24D8500EA0A3D /* Urba-AdminUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8C5F2B961DD24D8400EA0A3D /* Urba-Admin */ = {
+			isa = PBXGroup;
+			children = (
+				8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */,
+				8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */,
+				8C5F2B9D1DD24D8400EA0A3D /* ViewController.h */,
+				8C5F2B9E1DD24D8400EA0A3D /* ViewController.m */,
+				8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */,
+				8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */,
+				8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */,
+				8C5F2BA81DD24D8500EA0A3D /* Info.plist */,
+				8C5F2B971DD24D8400EA0A3D /* Supporting Files */,
+			);
+			path = "Urba-Admin";
+			sourceTree = "<group>";
+		};
+		8C5F2B971DD24D8400EA0A3D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8C5F2B981DD24D8400EA0A3D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8C5F2BB01DD24D8500EA0A3D /* Urba-AdminTests */ = {
+			isa = PBXGroup;
+			children = (
+				8C5F2BB11DD24D8500EA0A3D /* Urba_AdminTests.m */,
+				8C5F2BB31DD24D8500EA0A3D /* Info.plist */,
+			);
+			path = "Urba-AdminTests";
+			sourceTree = "<group>";
+		};
+		8C5F2BBB1DD24D8500EA0A3D /* Urba-AdminUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8C5F2BBC1DD24D8500EA0A3D /* Urba_AdminUITests.m */,
+				8C5F2BBE1DD24D8500EA0A3D /* Info.plist */,
+			);
+			path = "Urba-AdminUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8C5F2B931DD24D8400EA0A3D /* Urba-Admin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5F2BC11DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-Admin" */;
+			buildPhases = (
+				8C5F2B901DD24D8400EA0A3D /* Sources */,
+				8C5F2B911DD24D8400EA0A3D /* Frameworks */,
+				8C5F2B921DD24D8400EA0A3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Urba-Admin";
+			productName = "Urba-Admin";
+			productReference = 8C5F2B941DD24D8400EA0A3D /* Urba-Admin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8C5F2BAC1DD24D8500EA0A3D /* Urba-AdminTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5F2BC41DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminTests" */;
+			buildPhases = (
+				8C5F2BA91DD24D8500EA0A3D /* Sources */,
+				8C5F2BAA1DD24D8500EA0A3D /* Frameworks */,
+				8C5F2BAB1DD24D8500EA0A3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C5F2BAF1DD24D8500EA0A3D /* PBXTargetDependency */,
+			);
+			name = "Urba-AdminTests";
+			productName = "Urba-AdminTests";
+			productReference = 8C5F2BAD1DD24D8500EA0A3D /* Urba-AdminTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8C5F2BB71DD24D8500EA0A3D /* Urba-AdminUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C5F2BC71DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminUITests" */;
+			buildPhases = (
+				8C5F2BB41DD24D8500EA0A3D /* Sources */,
+				8C5F2BB51DD24D8500EA0A3D /* Frameworks */,
+				8C5F2BB61DD24D8500EA0A3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8C5F2BBA1DD24D8500EA0A3D /* PBXTargetDependency */,
+			);
+			name = "Urba-AdminUITests";
+			productName = "Urba-AdminUITests";
+			productReference = 8C5F2BB81DD24D8500EA0A3D /* Urba-AdminUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8C5F2B8C1DD24D8400EA0A3D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Ricardo Nazario";
+				TargetAttributes = {
+					8C5F2B931DD24D8400EA0A3D = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = SGRW3864BW;
+						ProvisioningStyle = Automatic;
+					};
+					8C5F2BAC1DD24D8500EA0A3D = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = SGRW3864BW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8C5F2B931DD24D8400EA0A3D;
+					};
+					8C5F2BB71DD24D8500EA0A3D = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = SGRW3864BW;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8C5F2B931DD24D8400EA0A3D;
+					};
+				};
+			};
+			buildConfigurationList = 8C5F2B8F1DD24D8400EA0A3D /* Build configuration list for PBXProject "Urba-Admin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8C5F2B8B1DD24D8400EA0A3D;
+			productRefGroup = 8C5F2B951DD24D8400EA0A3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8C5F2B931DD24D8400EA0A3D /* Urba-Admin */,
+				8C5F2BAC1DD24D8500EA0A3D /* Urba-AdminTests */,
+				8C5F2BB71DD24D8500EA0A3D /* Urba-AdminUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8C5F2B921DD24D8400EA0A3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5F2BA71DD24D8500EA0A3D /* LaunchScreen.storyboard in Resources */,
+				8C5F2BA41DD24D8500EA0A3D /* Assets.xcassets in Resources */,
+				8C5F2BA21DD24D8500EA0A3D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5F2BAB1DD24D8500EA0A3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5F2BB61DD24D8500EA0A3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8C5F2B901DD24D8400EA0A3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5F2B9F1DD24D8500EA0A3D /* ViewController.m in Sources */,
+				8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */,
+				8C5F2B991DD24D8400EA0A3D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5F2BA91DD24D8500EA0A3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5F2BB21DD24D8500EA0A3D /* Urba_AdminTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8C5F2BB41DD24D8500EA0A3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C5F2BBD1DD24D8500EA0A3D /* Urba_AdminUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8C5F2BAF1DD24D8500EA0A3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5F2B931DD24D8400EA0A3D /* Urba-Admin */;
+			targetProxy = 8C5F2BAE1DD24D8500EA0A3D /* PBXContainerItemProxy */;
+		};
+		8C5F2BBA1DD24D8500EA0A3D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8C5F2B931DD24D8400EA0A3D /* Urba-Admin */;
+			targetProxy = 8C5F2BB91DD24D8500EA0A3D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C5F2BA11DD24D8500EA0A3D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C5F2BA61DD24D8500EA0A3D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8C5F2BBF1DD24D8500EA0A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8C5F2BC01DD24D8500EA0A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8C5F2BC21DD24D8500EA0A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SGRW3864BW;
+				INFOPLIST_FILE = "Urba-Admin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RicardoNazario.Urba-Admin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8C5F2BC31DD24D8500EA0A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SGRW3864BW;
+				INFOPLIST_FILE = "Urba-Admin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RicardoNazario.Urba-Admin";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8C5F2BC51DD24D8500EA0A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = SGRW3864BW;
+				INFOPLIST_FILE = "Urba-AdminTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RicardoNazario.Urba-AdminTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Urba-Admin.app/Urba-Admin";
+			};
+			name = Debug;
+		};
+		8C5F2BC61DD24D8500EA0A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = SGRW3864BW;
+				INFOPLIST_FILE = "Urba-AdminTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RicardoNazario.Urba-AdminTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Urba-Admin.app/Urba-Admin";
+			};
+			name = Release;
+		};
+		8C5F2BC81DD24D8500EA0A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SGRW3864BW;
+				INFOPLIST_FILE = "Urba-AdminUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RicardoNazario.Urba-AdminUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Urba-Admin";
+			};
+			name = Debug;
+		};
+		8C5F2BC91DD24D8500EA0A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = SGRW3864BW;
+				INFOPLIST_FILE = "Urba-AdminUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.RicardoNazario.Urba-AdminUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Urba-Admin";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8C5F2B8F1DD24D8400EA0A3D /* Build configuration list for PBXProject "Urba-Admin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5F2BBF1DD24D8500EA0A3D /* Debug */,
+				8C5F2BC01DD24D8500EA0A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8C5F2BC11DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-Admin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5F2BC21DD24D8500EA0A3D /* Debug */,
+				8C5F2BC31DD24D8500EA0A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8C5F2BC41DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5F2BC51DD24D8500EA0A3D /* Debug */,
+				8C5F2BC61DD24D8500EA0A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8C5F2BC71DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C5F2BC81DD24D8500EA0A3D /* Debug */,
+				8C5F2BC91DD24D8500EA0A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8C5F2B8C1DD24D8400EA0A3D /* Project object */;
+}
