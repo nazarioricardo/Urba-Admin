@@ -50,7 +50,13 @@
                                  } else {
                                 
                                      //TODO: Create community
-                            
+                                     FIRDatabaseReference *ref = [[FIRDatabase database] reference];
+                                     ref = [[ref child:@"communities"] childByAutoId];
+                                     
+                                     [[ref child:@"name"] setValue:_commNameTextField.text];
+                                     [[ref child:@"admin-name"] setValue:_adminNameTextField.text];
+                                     [[ref child:@"admin-email"] setValue:_adminEmailTextField.text];
+                                     [[ref child:@"admin-id"] setValue:user.uid];
                                  }
     }];
     

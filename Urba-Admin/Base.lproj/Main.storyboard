@@ -30,9 +30,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIx-7O-2QA">
                                 <rect key="frame" x="87.5" y="356" width="200" height="30"/>
                                 <state key="normal" title="Done"/>
-                                <connections>
-                                    <segue destination="z4Y-Hs-BbC" kind="presentation" modalTransitionStyle="flipHorizontal" id="pJ9-hV-tYT"/>
-                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Admin E-Mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5w-sS-g3v">
                                 <rect key="frame" x="87.5" y="280" width="200" height="30"/>
@@ -43,6 +40,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KCZ-oH-OeS">
+                                <rect key="frame" x="16" y="583" width="343" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Tap here to add your community"/>
+                                <connections>
+                                    <segue destination="z4Y-Hs-BbC" kind="presentation" modalTransitionStyle="flipHorizontal" id="eK9-fM-CsD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
