@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>GTMSessionFetcher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Urba-Admin.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Urba-AdminTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Urba-AdminUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0597E693453A9B9EB96A690DAEC03780</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0CE2C5FFABAA8D2B4DF63119BB10DB40</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>32DDEF6D54A71F699325630F1EA83AF0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5AC83A8E369AAC390EA67BD56B225067</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ACB006A7D4B55ECB3EE7DB86106C9E60</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

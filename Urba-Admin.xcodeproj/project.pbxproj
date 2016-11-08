@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		255E68E4B4E6D22EE6202140 /* libPods-Urba-Admin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B0E43E36916677858EAC8D /* libPods-Urba-Admin.a */; };
+		7A9B0889D5CD0DAB6D42BADD /* libPods-Urba-AdminTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095843F9B1FCAEC86A872046 /* libPods-Urba-AdminTests.a */; };
 		8C5F2B991DD24D8400EA0A3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B981DD24D8400EA0A3D /* main.m */; };
 		8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */; };
-		8C5F2B9F1DD24D8500EA0A3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B9E1DD24D8400EA0A3D /* ViewController.m */; };
 		8C5F2BA21DD24D8500EA0A3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */; };
 		8C5F2BA41DD24D8500EA0A3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */; };
 		8C5F2BA71DD24D8500EA0A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */; };
 		8C5F2BB21DD24D8500EA0A3D /* Urba_AdminTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BB11DD24D8500EA0A3D /* Urba_AdminTests.m */; };
 		8C5F2BBD1DD24D8500EA0A3D /* Urba_AdminUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BBC1DD24D8500EA0A3D /* Urba_AdminUITests.m */; };
+		8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BCB1DD259E200EA0A3D /* UBCreateCommViewController.m */; };
+		B83CD359FD070E873AC7A46B /* libPods-Urba-AdminUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		095843F9B1FCAEC86A872046 /* libPods-Urba-AdminTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-AdminTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		545F4144E84C30836AB653B2 /* Pods-Urba-Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-Admin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin.release.xcconfig"; sourceTree = "<group>"; };
+		57439D86CE48B6AE206E29D5 /* Pods-Urba-AdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		66B0E43E36916677858EAC8D /* libPods-Urba-Admin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-Admin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D7C48281C81715A6AEF3531 /* Pods-Urba-AdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C5F2B941DD24D8400EA0A3D /* Urba-Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urba-Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5F2B981DD24D8400EA0A3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8C5F2B9D1DD24D8400EA0A3D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8C5F2B9E1DD24D8400EA0A3D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8C5F2BA11DD24D8500EA0A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C5F2BA61DD24D8500EA0A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +57,12 @@
 		8C5F2BB81DD24D8500EA0A3D /* Urba-AdminUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Urba-AdminUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5F2BBC1DD24D8500EA0A3D /* Urba_AdminUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Urba_AdminUITests.m; sourceTree = "<group>"; };
 		8C5F2BBE1DD24D8500EA0A3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C5F2BCA1DD259E200EA0A3D /* UBCreateCommViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBCreateCommViewController.h; sourceTree = "<group>"; };
+		8C5F2BCB1DD259E200EA0A3D /* UBCreateCommViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBCreateCommViewController.m; sourceTree = "<group>"; };
+		8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin.debug.xcconfig"; sourceTree = "<group>"; };
+		A16DB575CA3BC1D946149158 /* Pods-Urba-AdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.release.xcconfig"; sourceTree = "<group>"; };
+		B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-AdminUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBDEC40C0F9069697672CCA6 /* Pods-Urba-AdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				255E68E4B4E6D22EE6202140 /* libPods-Urba-Admin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A9B0889D5CD0DAB6D42BADD /* libPods-Urba-AdminTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +86,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B83CD359FD070E873AC7A46B /* libPods-Urba-AdminUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3AF8862A754B4DAF32B4AB6D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				66B0E43E36916677858EAC8D /* libPods-Urba-Admin.a */,
+				095843F9B1FCAEC86A872046 /* libPods-Urba-AdminTests.a */,
+				B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		402C64F15624FBE9DBD6B68E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */,
+				545F4144E84C30836AB653B2 /* Pods-Urba-Admin.release.xcconfig */,
+				7D7C48281C81715A6AEF3531 /* Pods-Urba-AdminTests.debug.xcconfig */,
+				A16DB575CA3BC1D946149158 /* Pods-Urba-AdminTests.release.xcconfig */,
+				57439D86CE48B6AE206E29D5 /* Pods-Urba-AdminUITests.debug.xcconfig */,
+				FBDEC40C0F9069697672CCA6 /* Pods-Urba-AdminUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8C5F2B8B1DD24D8400EA0A3D = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +123,8 @@
 				8C5F2BB01DD24D8500EA0A3D /* Urba-AdminTests */,
 				8C5F2BBB1DD24D8500EA0A3D /* Urba-AdminUITests */,
 				8C5F2B951DD24D8400EA0A3D /* Products */,
+				402C64F15624FBE9DBD6B68E /* Pods */,
+				3AF8862A754B4DAF32B4AB6D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,8 +143,8 @@
 			children = (
 				8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */,
 				8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */,
-				8C5F2B9D1DD24D8400EA0A3D /* ViewController.h */,
-				8C5F2B9E1DD24D8400EA0A3D /* ViewController.m */,
+				8C5F2BCA1DD259E200EA0A3D /* UBCreateCommViewController.h */,
+				8C5F2BCB1DD259E200EA0A3D /* UBCreateCommViewController.m */,
 				8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */,
 				8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */,
 				8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */,
@@ -147,9 +187,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C5F2BC11DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-Admin" */;
 			buildPhases = (
+				ACD4CEF07E4A3630ABD02738 /* 📦 Check Pods Manifest.lock */,
 				8C5F2B901DD24D8400EA0A3D /* Sources */,
 				8C5F2B911DD24D8400EA0A3D /* Frameworks */,
 				8C5F2B921DD24D8400EA0A3D /* Resources */,
+				9F31A3F04F4FBCC75853E82C /* 📦 Embed Pods Frameworks */,
+				0BE4BF0948A00ECAC55D56A8 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,9 +207,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C5F2BC41DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminTests" */;
 			buildPhases = (
+				047E903796D22916446C258B /* 📦 Check Pods Manifest.lock */,
 				8C5F2BA91DD24D8500EA0A3D /* Sources */,
 				8C5F2BAA1DD24D8500EA0A3D /* Frameworks */,
 				8C5F2BAB1DD24D8500EA0A3D /* Resources */,
+				385B49691F57F3B59F1288C2 /* 📦 Embed Pods Frameworks */,
+				BA7D2292625DCBF92CB89DE4 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8C5F2BC71DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminUITests" */;
 			buildPhases = (
+				75C5A4815D9641A7C4C3F522 /* 📦 Check Pods Manifest.lock */,
 				8C5F2BB41DD24D8500EA0A3D /* Sources */,
 				8C5F2BB51DD24D8500EA0A3D /* Frameworks */,
 				8C5F2BB61DD24D8500EA0A3D /* Resources */,
+				35D434D88954AED6B622A69C /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -271,12 +319,135 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		047E903796D22916446C258B /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		0BE4BF0948A00ECAC55D56A8 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		35D434D88954AED6B622A69C /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		385B49691F57F3B59F1288C2 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75C5A4815D9641A7C4C3F522 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9F31A3F04F4FBCC75853E82C /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ACD4CEF07E4A3630ABD02738 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BA7D2292625DCBF92CB89DE4 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8C5F2B901DD24D8400EA0A3D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C5F2B9F1DD24D8500EA0A3D /* ViewController.m in Sources */,
+				8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */,
 				8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */,
 				8C5F2B991DD24D8400EA0A3D /* main.m in Sources */,
 			);
@@ -425,6 +596,7 @@
 		};
 		8C5F2BC21DD24D8500EA0A3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SGRW3864BW;
@@ -437,6 +609,7 @@
 		};
 		8C5F2BC31DD24D8500EA0A3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 545F4144E84C30836AB653B2 /* Pods-Urba-Admin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = SGRW3864BW;
@@ -449,6 +622,7 @@
 		};
 		8C5F2BC51DD24D8500EA0A3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7D7C48281C81715A6AEF3531 /* Pods-Urba-AdminTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = SGRW3864BW;
@@ -462,6 +636,7 @@
 		};
 		8C5F2BC61DD24D8500EA0A3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A16DB575CA3BC1D946149158 /* Pods-Urba-AdminTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = SGRW3864BW;
@@ -475,6 +650,7 @@
 		};
 		8C5F2BC81DD24D8500EA0A3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57439D86CE48B6AE206E29D5 /* Pods-Urba-AdminUITests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SGRW3864BW;
 				INFOPLIST_FILE = "Urba-AdminUITests/Info.plist";
@@ -487,6 +663,7 @@
 		};
 		8C5F2BC91DD24D8500EA0A3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBDEC40C0F9069697672CCA6 /* Pods-Urba-AdminUITests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SGRW3864BW;
 				INFOPLIST_FILE = "Urba-AdminUITests/Info.plist";
@@ -516,6 +693,7 @@
 				8C5F2BC31DD24D8500EA0A3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C5F2BC41DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +702,7 @@
 				8C5F2BC61DD24D8500EA0A3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8C5F2BC71DD24D8500EA0A3D /* Build configuration list for PBXNativeTarget "Urba-AdminUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +711,7 @@
 				8C5F2BC91DD24D8500EA0A3D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
