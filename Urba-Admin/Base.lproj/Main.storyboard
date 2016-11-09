@@ -67,11 +67,42 @@
                     <connections>
                         <outlet property="emailTextField" destination="P5w-sS-g3v" id="3Uq-H8-e9y"/>
                         <outlet property="passwordTextField" destination="Sfi-Br-Pke" id="rRV-mK-LPK"/>
+                        <segue destination="nL5-gR-eVe" kind="show" identifier="LogInSegue" id="yZ2-9H-NLY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-98.400000000000006" y="122.78860569715144"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="bAh-4M-a2W">
+            <objects>
+                <viewController id="qUo-tH-Ftx" customClass="UBMainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="elr-W2-YVJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="IAT-If-EbL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wld-EV-MCl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7c2-cK-w6E">
+                                <rect key="frame" x="16" y="72" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="cVN-ZB-yAX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rn8-qW-TaE"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0If-e6-fPG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1300" y="123"/>
         </scene>
         <!--Create Comm View Controller-->
         <scene sceneID="Lka-oe-muM">
@@ -176,6 +207,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbc-5v-yPd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-98.400000000000006" y="787.55622188905556"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="dk2-67-VSG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nL5-gR-eVe" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="2rI-G9-Z4K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="qUo-tH-Ftx" kind="relationship" relationship="rootViewController" id="ZN4-bg-6Hd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0JO-mu-0Th" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="609" y="123"/>
         </scene>
     </scenes>
 </document>

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		255E68E4B4E6D22EE6202140 /* libPods-Urba-Admin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B0E43E36916677858EAC8D /* libPods-Urba-Admin.a */; };
 		7A9B0889D5CD0DAB6D42BADD /* libPods-Urba-AdminTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095843F9B1FCAEC86A872046 /* libPods-Urba-AdminTests.a */; };
+		8C5678A41DD39D8700FAB9B9 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5678A31DD39D8700FAB9B9 /* Constants.m */; };
+		8C5678AA1DD3A44000FAB9B9 /* UBFIRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5678A91DD3A44000FAB9B9 /* UBFIRDatabaseManager.m */; };
+		8C5678AE1DD3B6DF00FAB9B9 /* UBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5678AD1DD3B6DF00FAB9B9 /* UBMainViewController.m */; };
 		8C5F2B991DD24D8400EA0A3D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B981DD24D8400EA0A3D /* main.m */; };
 		8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */; };
 		8C5F2BA21DD24D8500EA0A3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */; };
@@ -46,6 +49,12 @@
 		57439D86CE48B6AE206E29D5 /* Pods-Urba-AdminUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		66B0E43E36916677858EAC8D /* libPods-Urba-Admin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-Admin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7C48281C81715A6AEF3531 /* Pods-Urba-AdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C5678A21DD39D8700FAB9B9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8C5678A31DD39D8700FAB9B9 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		8C5678A81DD3A44000FAB9B9 /* UBFIRDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBFIRDatabaseManager.h; sourceTree = "<group>"; };
+		8C5678A91DD3A44000FAB9B9 /* UBFIRDatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBFIRDatabaseManager.m; sourceTree = "<group>"; };
+		8C5678AC1DD3B6DF00FAB9B9 /* UBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBMainViewController.h; sourceTree = "<group>"; };
+		8C5678AD1DD3B6DF00FAB9B9 /* UBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBMainViewController.m; sourceTree = "<group>"; };
 		8C5F2B941DD24D8400EA0A3D /* Urba-Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Urba-Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C5F2B981DD24D8400EA0A3D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -124,6 +133,40 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		8C5678A51DD3A1B300FAB9B9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C806D1E1DD27A16005D3A3C /* Welcome Views */,
+				8C5678AB1DD3B6B900FAB9B9 /* Main Views */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8C5678A61DD3A1BE00FAB9B9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8C5678A71DD3A1DE00FAB9B9 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				8C5678A81DD3A44000FAB9B9 /* UBFIRDatabaseManager.h */,
+				8C5678A91DD3A44000FAB9B9 /* UBFIRDatabaseManager.m */,
+			);
+			name = Control;
+			sourceTree = "<group>";
+		};
+		8C5678AB1DD3B6B900FAB9B9 /* Main Views */ = {
+			isa = PBXGroup;
+			children = (
+				8C5678AC1DD3B6DF00FAB9B9 /* UBMainViewController.h */,
+				8C5678AD1DD3B6DF00FAB9B9 /* UBMainViewController.m */,
+			);
+			name = "Main Views";
+			sourceTree = "<group>";
+		};
 		8C5F2B8B1DD24D8400EA0A3D = {
 			isa = PBXGroup;
 			children = (
@@ -153,7 +196,11 @@
 				8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */,
 				8C806D1F1DD295F6005D3A3C /* ActivityView.h */,
 				8C806D201DD295F6005D3A3C /* ActivityView.m */,
-				8C806D1E1DD27A16005D3A3C /* Welcome Views */,
+				8C5678A21DD39D8700FAB9B9 /* Constants.h */,
+				8C5678A31DD39D8700FAB9B9 /* Constants.m */,
+				8C5678A51DD3A1B300FAB9B9 /* Views */,
+				8C5678A61DD3A1BE00FAB9B9 /* Model */,
+				8C5678A71DD3A1DE00FAB9B9 /* Control */,
 				8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */,
 				8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */,
 				8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */,
@@ -473,7 +520,10 @@
 				8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */,
 				8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */,
 				8C5F2B991DD24D8400EA0A3D /* main.m in Sources */,
+				8C5678AE1DD3B6DF00FAB9B9 /* UBMainViewController.m in Sources */,
+				8C5678AA1DD3A44000FAB9B9 /* UBFIRDatabaseManager.m in Sources */,
 				8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */,
+				8C5678A41DD39D8700FAB9B9 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

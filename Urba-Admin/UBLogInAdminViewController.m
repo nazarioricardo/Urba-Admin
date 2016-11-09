@@ -7,6 +7,7 @@
 //
 
 #import "UBLogInAdminViewController.h"
+#import "Constants.h"
 #import "ActivityView.h"
 
 @import Firebase;
@@ -20,10 +21,8 @@
 
 @implementation UBLogInAdminViewController
 
-- (IBAction)donePressed:(id)sender {
-    
-
-    
+- (IBAction)donePressed:(id)sender {    
+    [self logIn];
 }
 
 -(void)logIn {
@@ -44,6 +43,7 @@
                 if ([snapshot hasChild:user.uid]) {
                     
                     NSLog(@"Admin log in was successful");
+                    [self performSegueWithIdentifier:logInSegue sender:self];
                 } else {
                     
                     NSLog(@"Attempted to log in without proper admin credentials");
