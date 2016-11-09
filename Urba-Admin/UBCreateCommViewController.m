@@ -7,6 +7,7 @@
 //
 
 #import "UBCreateCommViewController.h"
+#import "ActivityView.h"
 
 @import Firebase;
 
@@ -41,22 +42,32 @@
 
 -(void)createCommunity {
     
+    ActivityView *spinner = [ActivityView loadSpinnerIntoView:self.view];
+    
     [[FIRAuth auth] createUserWithEmail:_adminEmailTextField.text
                                password:_passwordTextField.text
                              completion:^(FIRUser *user, NSError *error) {
         
                                  if (error) {
                                      NSLog(@"Error: %@", error.description);
+                                     [spinner removeSpinner];
                                  } else {
                                 
-                                     //TODO: Create community
-                                     FIRDatabaseReference *ref = [[FIRDatabase database] reference];
-                                     ref = [[ref child:@"communities"] childByAutoId];
+                                     FIRDatabaseReference *commRef = [[FIRDatabase database] reference];
+                                     commRef = [[commRef child:@"communities"] childByAutoId];
                                      
-                                     [[ref child:@"name"] setValue:_commNameTextField.text];
-                                     [[ref child:@"admin-name"] setValue:_adminNameTextField.text];
-                                     [[ref child:@"admin-email"] setValue:_adminEmailTextField.text];
-                                     [[ref child:@"admin-id"] setValue:user.uid];
+                                     [[commRef child:@"name"] setValue:_commNameTextField.text];
+                                     [[commRef child:@"admin-name"] setValue:_adminNameTextField.text];
+                                     [[commRef child:@"admin-email"] setValue:_adminEmailTextField.text];
+                                     [[commRef child:@"admin-id"] setValue:user.uid];
+                                     
+                                     FIRDatabaseReference *adminRef = [[FIRDatabase database] reference];
+                                     adminRef = [[adminRef child:@"community-admins"] child:user.uid];
+                                     
+                                     [[adminRef child:@"email"] setValue:user.email];
+                                     [[adminRef child:@"community"] setValue:_commNameTextField.text];
+                                     
+                                     [self dismissViewControllerAnimated:YES completion:nil];
                                  }
     }];
     
