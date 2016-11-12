@@ -42,7 +42,7 @@
     
 //    [self getCommunity];
     NSLog(@"Community name %@", _currentCommunity.communityName);
-    self.navigationItem.title = _currentCommunity.communityName;
+    self.navigationItem.title = _communityName;
 }
 
 - (void)didReceiveMemoryWarning {

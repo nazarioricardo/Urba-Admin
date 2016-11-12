@@ -12,10 +12,10 @@
 
 const struct CommunityFields CommunityFields = {
     .identifier = @"identifier",
-    .communityName = @"communityName",
-    .adminName = @"adminName",
-    .email = @"email",
-    .adminId = @"adminId"
+    .communityName = @"name",
+    .adminName = @"admin-name",
+    .email = @"admin-email",
+    .adminId = @"admin-id"
 };
 
 @implementation Community
@@ -33,15 +33,14 @@ const struct CommunityFields CommunityFields = {
 #pragma mark - Private
 
 - (void)mapObject:(FIRDataSnapshot *)object {
-
     
-    NSLog(@"object value: %@", object);
+    NSLog(@"object value: %@", object.value);
 
 //    _identifier = [object.key valueForKeyPath:CommunityFields.identifier];
-//    _communityName = [object.value[@"name"] valueForKeyPath:CommunityFields.communityName];
-//    _adminName = [object.value[@"admin-name"] valueForKeyPath:CommunityFields.adminName];
-//    _email = [object.value[@"admin-email"] valueForKeyPath:CommunityFields.email];
-//    _adminId = [object.value[@"admin-id"] valueForKeyPath: CommunityFields.adminId];
+    _communityName = [object.value valueForKeyPath:CommunityFields.communityName];
+    _adminName = [object.value valueForKeyPath:CommunityFields.adminName];
+    _email = [object.value valueForKeyPath:CommunityFields.email];
+    _adminId = [object.value valueForKeyPath: CommunityFields.adminId];
 }
 
 @end

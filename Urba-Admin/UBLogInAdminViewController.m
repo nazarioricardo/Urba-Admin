@@ -9,6 +9,7 @@
 #import "UBLogInAdminViewController.h"
 #import "UBFIRDatabaseManager.h"
 #import "UBMainViewController.h"
+#import "Community.h"
 #import "Constants.h"
 #import "ActivityView.h"
 
@@ -49,36 +50,24 @@
                     
                     NSLog(@"Admin log in was successful");
                     
-//                    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
-//                                                     orderedBy:@"admin-id"
-//                                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
-//                                            withSuccessHandler:^(NSArray *results) {
-//                                                
-//                                                NSDictionary<NSString *, NSString *> *dict = results[0];
-//                                                
-//                                                _communityName = dict[@"name"];
-//                                                
-//                                                NSLog(@"Results: %@", dict);
-//                                                [self performSegueWithIdentifier:logInSegue sender:self];
-//                                            }
-//                                                orErrorHandler:^(NSError *error) {
-//                                                    
-//                                                    NSLog(@"Error: %@", error.description);
-//                                                }];
-                    [UBFIRDatabaseManager getAllValuesFromSingleNode:@"communities"
-                                                           orderedBy:@"admin-id"
-                                                          filteredBy:user.uid
-                                                         withHandler:^(Community *community) {
-                                                             
-                                                             _currentCommunity = community;
-                                                             NSLog(@"Community name: %@", community.communityName);
-                                                             [self performSegueWithIdentifier:logInSegue sender:self];
-                                                            
-                    }
-                                                      orErrorHandler:^(NSError *error) {
-                                                          
-                                                          NSLog(@"Error: %@", error.description);
-                    }];
+                    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
+                                                     orderedBy:@"admin-id"
+                                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
+                                            withSuccessHandler:^(NSArray *results) {
+                                                
+                                                NSDictionary<NSString *, NSString *> *dict = results[0];
+                                                
+                                                _communityName = dict[@"name"];
+                                                
+                                                
+                                                NSLog(@"Results: %@", dict);
+                                                [self performSegueWithIdentifier:logInSegue sender:self];
+                                            }
+                                                orErrorHandler:^(NSError *error) {
+                                                    
+                                                    NSLog(@"Error: %@", error.description);
+                                                }];
+
                 } else {
                     
                     NSLog(@"Attempted to log in without proper admin credentials");
@@ -110,6 +99,7 @@
     
     // Pass the selected object to the new view controller.
     [umvc setCurrentCommunity:_currentCommunity];
+    [umvc setCommunityName:_communityName];
 }
 
 @end

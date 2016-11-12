@@ -81,30 +81,20 @@
     }];
 }
 
-+(void)createNode:(NSString *)node withValue:(NSString *)value forKey:(NSString *)key {
-    
-    FIRDatabaseReference *ref = [self databaseRef];
-    
-    [[[[ref child:node] childByAutoId] child:key] setValue:value];
-}
-
-+(NSString *)getCurrentUser {
-    return [FIRAuth auth].currentUser.uid;
-}
-
 +(void)getAllValuesFromSingleNode:(NSString *)node orderedBy:(NSString *)order filteredBy:(NSString *)filter withHandler:(FIRCommHandler)successHandler orErrorHandler:(FIRErrorHandler)errorHandler {
     
     FIRDatabaseHandle refHandle;
     FIRDatabaseReference *ref = [self databaseRef];
     ref = [ref child:node];
-    FIRDatabaseQuery *query = [[ref queryOrderedByChild:order] queryEqualToValue:filter];
+    
+    FIRDatabaseQuery *query = [[ref child:order] queryEqualToValue:filter];
     
     refHandle = [query observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
         
         if (successHandler) {
-        
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                successHandler ([self mapCommunities:snapshot]);
+                successHandler ([self mapCommunity:snapshot]);
             });
             [ref removeObserverWithHandle:refHandle];
         }
@@ -117,6 +107,17 @@
             [ref removeObserverWithHandle:refHandle];
         }
     }];
+}
+
++(void)createNode:(NSString *)node withValue:(NSString *)value forKey:(NSString *)key {
+    
+    FIRDatabaseReference *ref = [self databaseRef];
+    
+    [[[[ref child:node] childByAutoId] child:key] setValue:value];
+}
+
++(NSString *)getCurrentUser {
+    return [FIRAuth auth].currentUser.uid;
 }
 
 + (NSArray *)mapResults:(NSArray *)results {
@@ -134,14 +135,9 @@
     return [NSArray arrayWithArray:temp];
 }
 
-+ (Community *)mapCommunities:(FIRDataSnapshot *)communitySnap {
++ (Community *)mapCommunity:(FIRDataSnapshot *)communitySnap {
     
-    FIRDataSnapshot *snap = communitySnap;
-    NSString *name = snap.value[@"name"];
-    
-    NSLog(@"community snap: %@", name);
-    
-    Community *community = [[Community alloc] initWithInputData:snap];
+    Community *community = [[Community alloc] initWithInputData:communitySnap];
     
     return community;
 }
