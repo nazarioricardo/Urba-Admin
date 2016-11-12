@@ -7,6 +7,8 @@
 //
 
 #import "UBLogInAdminViewController.h"
+#import "UBFIRDatabaseManager.h"
+#import "UBMainViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
 
@@ -16,6 +18,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (weak, nonatomic) NSString *communityName;
+@property (weak, nonatomic) Community *currentCommunity;
 
 @end
 
@@ -29,7 +34,7 @@
     
     ActivityView *spinner = [ActivityView loadSpinnerIntoView:self.view];
 
-    [[FIRAuth auth] signInWithEmail:_emailTextField.text password:_passwordTextField.text completion:^(FIRUser *user, NSError *error) {
+    [[FIRAuth auth] signInWithEmail:@"jpnazario5@hotmail.com" password:@"iamjuan" completion:^(FIRUser *user, NSError *error) {
         
         if (error) {
             NSLog(@"Error: %@", error.description);
@@ -43,21 +48,46 @@
                 if ([snapshot hasChild:user.uid]) {
                     
                     NSLog(@"Admin log in was successful");
-                    [self performSegueWithIdentifier:logInSegue sender:self];
+                    
+//                    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
+//                                                     orderedBy:@"admin-id"
+//                                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
+//                                            withSuccessHandler:^(NSArray *results) {
+//                                                
+//                                                NSDictionary<NSString *, NSString *> *dict = results[0];
+//                                                
+//                                                _communityName = dict[@"name"];
+//                                                
+//                                                NSLog(@"Results: %@", dict);
+//                                                [self performSegueWithIdentifier:logInSegue sender:self];
+//                                            }
+//                                                orErrorHandler:^(NSError *error) {
+//                                                    
+//                                                    NSLog(@"Error: %@", error.description);
+//                                                }];
+                    [UBFIRDatabaseManager getAllValuesFromSingleNode:@"communities"
+                                                           orderedBy:@"admin-id"
+                                                          filteredBy:user.uid
+                                                         withHandler:^(Community *community) {
+                                                             
+                                                             _currentCommunity = community;
+                                                             NSLog(@"Community name: %@", community.communityName);
+                                                             [self performSegueWithIdentifier:logInSegue sender:self];
+                                                            
+                    }
+                                                      orErrorHandler:^(NSError *error) {
+                                                          
+                                                          NSLog(@"Error: %@", error.description);
+                    }];
                 } else {
                     
                     NSLog(@"Attempted to log in without proper admin credentials");
                     [[FIRAuth auth] signOut:nil];
                     [spinner removeSpinner];
                 }
-                
             }];
-            
-            
         }
-        
     }];
-    
 }
 
 - (void)viewDidLoad {
@@ -70,14 +100,16 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
+    UINavigationController *nav = [segue destinationViewController];
+    UBMainViewController *umvc = (UBMainViewController *)[nav topViewController];
+    
     // Pass the selected object to the new view controller.
+    [umvc setCurrentCommunity:_currentCommunity];
 }
-*/
 
 @end

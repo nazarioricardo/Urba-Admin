@@ -23,6 +23,7 @@
 		8C63A8AF1DD2642B00AEC54B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C63A8AE1DD2642B00AEC54B /* GoogleService-Info.plist */; };
 		8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D1B1DD279FB005D3A3C /* UBLogInAdminViewController.m */; };
 		8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D201DD295F6005D3A3C /* ActivityView.m */; };
+		8CF877141DD62116008D13E8 /* Community.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CF877131DD62116008D13E8 /* Community.m */; };
 		B83CD359FD070E873AC7A46B /* libPods-Urba-AdminUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,8 @@
 		8C806D1F1DD295F6005D3A3C /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
 		8C806D201DD295F6005D3A3C /* ActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityView.m; sourceTree = "<group>"; };
 		8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin.debug.xcconfig"; sourceTree = "<group>"; };
+		8CF877121DD62116008D13E8 /* Community.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Community.h; sourceTree = "<group>"; };
+		8CF877131DD62116008D13E8 /* Community.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Community.m; sourceTree = "<group>"; };
 		A16DB575CA3BC1D946149158 /* Pods-Urba-AdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.release.xcconfig"; sourceTree = "<group>"; };
 		B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-AdminUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDEC40C0F9069697672CCA6 /* Pods-Urba-AdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +148,8 @@
 		8C5678A61DD3A1BE00FAB9B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8CF877121DD62116008D13E8 /* Community.h */,
+				8CF877131DD62116008D13E8 /* Community.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				8C5678AE1DD3B6DF00FAB9B9 /* UBMainViewController.m in Sources */,
 				8C5678AA1DD3A44000FAB9B9 /* UBFIRDatabaseManager.m in Sources */,
 				8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */,
+				8CF877141DD62116008D13E8 /* Community.m in Sources */,
 				8C5678A41DD39D8700FAB9B9 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

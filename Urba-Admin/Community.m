@@ -6,18 +6,19 @@
 //  Copyright © 2016 Ricardo Nazario. All rights reserved.
 //
 
-#import "CurrentCommunity.h"
+#import "Community.h"
 
 @import Firebase;
 
-const struct Community Community = {
-    .identifier = @"id",
+const struct CommunityFields CommunityFields = {
+    .identifier = @"identifier",
     .communityName = @"communityName",
     .adminName = @"adminName",
-    .email = @"email"
+    .email = @"email",
+    .adminId = @"adminId"
 };
 
-@implementation CurrentCommunity
+@implementation Community
 
 #pragma mark - Lifecycle
 
@@ -32,10 +33,15 @@ const struct Community Community = {
 #pragma mark - Private
 
 - (void)mapObject:(FIRDataSnapshot *)object {
-    _identifier = [object valueForKeyPath:Community.identifier];
-    _communityName = [object valueForKeyPath:Community.communityName];
-    _adminName = [object valueForKeyPath:Community.adminName];
-    _email = [object valueForKeyPath:Community.email];
+
+    
+    NSLog(@"object value: %@", object);
+
+//    _identifier = [object.key valueForKeyPath:CommunityFields.identifier];
+//    _communityName = [object.value[@"name"] valueForKeyPath:CommunityFields.communityName];
+//    _adminName = [object.value[@"admin-name"] valueForKeyPath:CommunityFields.adminName];
+//    _email = [object.value[@"admin-email"] valueForKeyPath:CommunityFields.email];
+//    _adminId = [object.value[@"admin-id"] valueForKeyPath: CommunityFields.adminId];
 }
 
 @end

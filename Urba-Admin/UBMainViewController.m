@@ -17,22 +17,32 @@
 
 @implementation UBMainViewController
 
+- (void)getCommunity {
+    
+//    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
+//                                     orderedBy:@"admin-id"
+//                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
+//                            withSuccessHandler:^(NSArray *results) {
+//                                
+//                                NSDictionary<NSString *, NSString *> *dict = results[0];
+//                                
+//                                _communityName = dict[@"name"];
+//                                
+//                                NSLog(@"Results: %@", _communityName);
+//                            }
+//                                orErrorHandler:^(NSError *error) {
+//                                    
+//                                    NSLog(@"Error: %@", error.description);
+//                                }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
-                                     orderedBy:@"admin-id"
-                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
-                            withSuccessHandler:^(NSArray *results) {
-                                
-                                NSLog(@"Results: %@", results);
-                                
-                            }
-                                orErrorHandler:^(NSError *error) {
-                                    
-                                    NSLog(@"Error: %@", error.description);
-                                }];
+//    [self getCommunity];
+    NSLog(@"Community name %@", _currentCommunity.communityName);
+    self.navigationItem.title = _currentCommunity.communityName;
 }
 
 - (void)didReceiveMemoryWarning {
