@@ -11,5 +11,6 @@
 @implementation Constants
 
 NSString *const logInSegue = @"LogInSegue";
+NSString *const addSuperUnitsSegue = @"AddSuperUnitsSegue";
 
 @end

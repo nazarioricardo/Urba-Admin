@@ -8,6 +8,7 @@
 
 #import "UBMainViewController.h"
 #import "UBFIRDatabaseManager.h"
+#import "UBAddSuperUnitsViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
 
@@ -41,7 +42,7 @@
     // Do any additional setup after loading the view.
     
 //    [self getCommunity];
-    NSLog(@"Community name %@", _currentCommunity.communityName);
+    NSLog(@"Community key: %@", _communityKey);
     self.navigationItem.title = _communityName;
 }
 
@@ -50,14 +51,22 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
     // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:addSuperUnitsSegue]) {
+        
+        // Pass the selected object to the new view controller.
+        UINavigationController *nvc = [segue destinationViewController];
+        UBAddSuperUnitsViewController *suvc = (UBAddSuperUnitsViewController *)[nvc topViewController];
+    
+        [suvc setCommunityId:_communityKey];
+        [suvc setCommunityName:_communityName];
+    }
+
 }
-*/
 
 @end

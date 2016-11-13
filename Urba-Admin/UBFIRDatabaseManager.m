@@ -81,32 +81,27 @@
     }];
 }
 
-+(void)getAllValuesFromSingleNode:(NSString *)node orderedBy:(NSString *)order filteredBy:(NSString *)filter withHandler:(FIRCommHandler)successHandler orErrorHandler:(FIRErrorHandler)errorHandler {
++ (BOOL)checkIfNodeHasChild:(NSString *)node child:(NSString *)child {
     
-    FIRDatabaseHandle refHandle;
     FIRDatabaseReference *ref = [self databaseRef];
     ref = [ref child:node];
     
-    FIRDatabaseQuery *query = [[ref child:order] queryEqualToValue:filter];
-    
-    refHandle = [query observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+    __block BOOL hasChild;
+
+    [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
         
-        if (successHandler) {
+        if ([snapshot hasChild:child]) {
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                successHandler ([self mapCommunity:snapshot]);
-            });
-            [ref removeObserverWithHandle:refHandle];
-        }
-    } withCancelBlock:^(NSError *error) {
-        
-        if (errorHandler) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                errorHandler (error);
-            });
-            [ref removeObserverWithHandle:refHandle];
+            NSLog(@"Children exist!");
+            hasChild = YES;
+        } else {
+            
+            NSLog(@"Children don't exist");
+            hasChild = NO;
         }
     }];
+    
+    return hasChild;
 }
 
 +(void)createNode:(NSString *)node withValue:(NSString *)value forKey:(NSString *)key {
@@ -114,6 +109,15 @@
     FIRDatabaseReference *ref = [self databaseRef];
     
     [[[[ref child:node] childByAutoId] child:key] setValue:value];
+}
+
++(void)createUnitOrSuperUnit:(NSString *)node withValue:(NSString *)value withOwner:(NSString *)owner {
+    
+    FIRDatabaseReference *ref = [self databaseRef];
+    ref = [[ref child:node] childByAutoId];
+    
+    [[ref child:@"name"] setValue:value];
+    [[ref child:@"owner"] setValue:owner];
 }
 
 +(NSString *)getCurrentUser {
@@ -134,14 +138,5 @@
     
     return [NSArray arrayWithArray:temp];
 }
-
-+ (Community *)mapCommunity:(FIRDataSnapshot *)communitySnap {
-    
-    Community *community = [[Community alloc] initWithInputData:communitySnap];
-    
-    return community;
-}
-
-
 
 @end

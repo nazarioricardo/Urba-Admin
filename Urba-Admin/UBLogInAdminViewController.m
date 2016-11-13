@@ -9,7 +9,6 @@
 #import "UBLogInAdminViewController.h"
 #import "UBFIRDatabaseManager.h"
 #import "UBMainViewController.h"
-#import "Community.h"
 #import "Constants.h"
 #import "ActivityView.h"
 
@@ -21,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (weak, nonatomic) NSString *communityName;
-@property (weak, nonatomic) Community *currentCommunity;
+@property (weak, nonatomic) NSString *communityKey;
 
 @end
 
@@ -58,7 +57,7 @@
                                                 NSDictionary<NSString *, NSString *> *dict = results[0];
                                                 
                                                 _communityName = dict[@"name"];
-                                                
+                                                _communityKey = dict[@"key"];
                                                 
                                                 NSLog(@"Results: %@", dict);
                                                 [self performSegueWithIdentifier:logInSegue sender:self];
@@ -94,12 +93,15 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    UINavigationController *nav = [segue destinationViewController];
-    UBMainViewController *umvc = (UBMainViewController *)[nav topViewController];
     
-    // Pass the selected object to the new view controller.
-    [umvc setCurrentCommunity:_currentCommunity];
-    [umvc setCommunityName:_communityName];
+    if ([segue.identifier isEqualToString:logInSegue]) {
+        UINavigationController *nvc = [segue destinationViewController];
+        UBMainViewController *umvc = (UBMainViewController *)[nvc topViewController];
+        
+        // Pass the selected object to the new view controller.
+        [umvc setCommunityName:_communityName];
+        [umvc setCommunityKey:_communityKey];
+    }
 }
 
 @end

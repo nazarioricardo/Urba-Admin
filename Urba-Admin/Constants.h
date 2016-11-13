@@ -11,5 +11,6 @@
 @interface Constants : NSObject
 
 extern NSString *const logInSegue;
+extern NSString *const addSuperUnitsSegue;
 
 @end

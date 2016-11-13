@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Community.h"
 
 @interface UBMainViewController : UIViewController
 
 @property (weak, nonatomic) NSString *communityName;
-@property (strong, nonatomic) Community *currentCommunity;
+@property (weak, nonatomic) NSString *communityKey;
 
 @end
