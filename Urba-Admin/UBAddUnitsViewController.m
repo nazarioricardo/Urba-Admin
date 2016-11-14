@@ -1,75 +1,79 @@
 //
-//  UBAddSuperUnitsViewController.m
+//  UBAddUnitsViewController.m
 //  Urba-Admin
 //
 //  Created by Ricardo Nazario on 11/12/16.
 //  Copyright © 2016 Ricardo Nazario. All rights reserved.
 //
 
-#import "UBAddSuperUnitsViewController.h"
-#import "UBFIRDatabaseManager.h"
 #import "UBAddUnitsViewController.h"
-#import "Constants.h"
+#import "UBFIRDatabaseManager.h"
 #import "ActivityView.h"
 
-@interface UBAddSuperUnitsViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface UBAddUnitsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *streetNameTextField;
-@property (weak, nonatomic) IBOutlet UITableView *superUnitsTableView;
+@property (weak, nonatomic) IBOutlet UITableView *actualUnitsTableView;
+@property (weak, nonatomic) IBOutlet UITableView *previewUnitsTableView;
+@property (weak, nonatomic) IBOutlet UITextField *singleUnitTextField;
+@property (weak, nonatomic) IBOutlet UITextField *prefixTextField;
+@property (weak, nonatomic) IBOutlet UITextField *firstNumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *suffixTextField;
+@property (weak, nonatomic) IBOutlet UITextField *numberOfUnitsTextField;
+@property (weak, nonatomic) IBOutlet UITextField *incrementorTextField;
 
 @property (strong, nonatomic) NSString *ownerName;
-@property (strong, nonatomic) NSMutableArray *superUnitsArray;
+@property (strong, nonatomic) NSMutableArray *unitsArray;
 
-@property (weak, nonatomic) NSString *selectedKey;
-@property (weak, nonatomic) NSString *selectedName;
 
 @end
 
-@implementation UBAddSuperUnitsViewController
+@implementation UBAddUnitsViewController
 
 #pragma mark - IBActions
 
-- (IBAction)addPressed:(id)sender {
+- (IBAction)addSinglePressed:(id)sender {
     
-    NSLog(@"Owner name to set: %@", _ownerName);
-    
-    if ([_streetNameTextField.text isEqualToString:@""]) {
-        NSLog(@"Please fill in required field");
-    } else {
-        [UBFIRDatabaseManager createUnitOrSuperUnit:@"super-units"
-                                          withValue:_streetNameTextField.text
-                                          withOwner:_ownerName];
-    }
-
+    [UBFIRDatabaseManager createUnitOrSuperUnit:@"units"
+                                      withValue:_singleUnitTextField.text
+                                      withOwner:_ownerName];
 }
 
-- (IBAction)cancelPressed:(id)sender {
+- (IBAction)addBatchPressed:(id)sender {
+
+    NSUInteger firstNumber = [_firstNumberTextField.text integerValue];
+    NSUInteger highestNum = [_numberOfUnitsTextField.text integerValue];
+    NSUInteger incrementor = [_incrementorTextField.text integerValue];
+    
+    for (NSInteger i = firstNumber; i <= highestNum; i += incrementor) {
+        
+        NSString *unit = [NSString stringWithFormat:@"%@%ld%@", _prefixTextField.text, i, _suffixTextField.text];
+        
+        [UBFIRDatabaseManager createUnitOrSuperUnit:@"units"
+                                          withValue:unit
+                                          withOwner:_ownerName];
+    }
+}
+
+- (IBAction)donePressed:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 #pragma mark - Private
 
--(void)getSuperUnits {
+-(void)getUnits {
     
-    [UBFIRDatabaseManager getAllValuesFromNode:@"super-units"
+    [UBFIRDatabaseManager getAllValuesFromNode:@"units"
                                      orderedBy:@"owner"
                                     filteredBy:_ownerName
                             withSuccessHandler:^(NSArray *results) {
                                 
-                                _superUnitsArray = [NSMutableArray arrayWithArray:results];
-                                [_superUnitsTableView reloadData];
+                                _unitsArray = [NSMutableArray arrayWithArray:results];
+                                [_actualUnitsTableView reloadData];
                             }
                                 orErrorHandler:^(NSError *error) {
                                     
                                     NSLog(@"Error: %@", error.description);
                                 }];
-}
-
--(BOOL)checkIfCommunityHasSuperUnits {
-    
-    return [UBFIRDatabaseManager checkIfNodeHasChild:@"super-units"
-                                               child:_ownerName];
 }
 
 #pragma mark - Table View Data Source
@@ -79,7 +83,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_superUnitsArray count];
+    return [_unitsArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,7 +91,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Unpack from results array
-    NSDictionary<NSString *, NSString *> *snapshotDict = _superUnitsArray[indexPath.row];
+    NSDictionary<NSString *, NSString *> *snapshotDict = _unitsArray[indexPath.row];
     NSString *name = [snapshotDict objectForKey:@"name"];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", name];
@@ -99,26 +103,18 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    NSDictionary *currentSnapshot = _superUnitsArray[indexPath.row];
-
-    _selectedKey = currentSnapshot[@"key"];
-    _selectedName = selectedCell.textLabel.text;
-    
-    [self performSegueWithIdentifier:addUnitsSegue sender:self];
 }
-
-#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    _ownerName = [NSString stringWithFormat:@"%@-%@", _communityName, _communityId];
+    self.navigationItem.title = _superUnitName;
     
-    NSLog(@"Owner name: %@", _ownerName);
+    _ownerName = [NSString stringWithFormat:@"%@-%@", _superUnitName, _superUnitId];
+
     
-    [self getSuperUnits];
+    [self getUnits];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -126,21 +122,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
-    
-    if ([segue.identifier isEqualToString:addUnitsSegue]) {
-        UBAddUnitsViewController *auvc = [segue destinationViewController];
-        
-        [auvc setSuperUnitId:_selectedKey];
-        [auvc setSuperUnitName:_selectedName];
-
-    }
-    
     // Pass the selected object to the new view controller.
 }
+*/
 
 @end

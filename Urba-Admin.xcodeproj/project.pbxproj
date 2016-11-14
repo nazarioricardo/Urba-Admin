@@ -10,7 +10,7 @@
 		255E68E4B4E6D22EE6202140 /* libPods-Urba-Admin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66B0E43E36916677858EAC8D /* libPods-Urba-Admin.a */; };
 		7A9B0889D5CD0DAB6D42BADD /* libPods-Urba-AdminTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 095843F9B1FCAEC86A872046 /* libPods-Urba-AdminTests.a */; };
 		8C2766AA1DD78D07008C7DCB /* UBAddSuperUnitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2766A91DD78D07008C7DCB /* UBAddSuperUnitsViewController.m */; };
-		8C2766AD1DD7FBE4008C7DCB /* UBAddUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2766AC1DD7FBE4008C7DCB /* UBAddUnitViewController.m */; };
+		8C2766AD1DD7FBE4008C7DCB /* UBAddUnitsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C2766AC1DD7FBE4008C7DCB /* UBAddUnitsViewController.m */; };
 		8C5678A41DD39D8700FAB9B9 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5678A31DD39D8700FAB9B9 /* Constants.m */; };
 		8C5678AA1DD3A44000FAB9B9 /* UBFIRDatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5678A91DD3A44000FAB9B9 /* UBFIRDatabaseManager.m */; };
 		8C5678AE1DD3B6DF00FAB9B9 /* UBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5678AD1DD3B6DF00FAB9B9 /* UBMainViewController.m */; };
@@ -53,8 +53,8 @@
 		7D7C48281C81715A6AEF3531 /* Pods-Urba-AdminTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C2766A81DD78D07008C7DCB /* UBAddSuperUnitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBAddSuperUnitsViewController.h; sourceTree = "<group>"; };
 		8C2766A91DD78D07008C7DCB /* UBAddSuperUnitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBAddSuperUnitsViewController.m; sourceTree = "<group>"; };
-		8C2766AB1DD7FBE4008C7DCB /* UBAddUnitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBAddUnitViewController.h; sourceTree = "<group>"; };
-		8C2766AC1DD7FBE4008C7DCB /* UBAddUnitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBAddUnitViewController.m; sourceTree = "<group>"; };
+		8C2766AB1DD7FBE4008C7DCB /* UBAddUnitsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBAddUnitsViewController.h; sourceTree = "<group>"; };
+		8C2766AC1DD7FBE4008C7DCB /* UBAddUnitsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBAddUnitsViewController.m; sourceTree = "<group>"; };
 		8C5678A21DD39D8700FAB9B9 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8C5678A31DD39D8700FAB9B9 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		8C5678A81DD3A44000FAB9B9 /* UBFIRDatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBFIRDatabaseManager.h; sourceTree = "<group>"; };
@@ -144,8 +144,8 @@
 			children = (
 				8C2766A81DD78D07008C7DCB /* UBAddSuperUnitsViewController.h */,
 				8C2766A91DD78D07008C7DCB /* UBAddSuperUnitsViewController.m */,
-				8C2766AB1DD7FBE4008C7DCB /* UBAddUnitViewController.h */,
-				8C2766AC1DD7FBE4008C7DCB /* UBAddUnitViewController.m */,
+				8C2766AB1DD7FBE4008C7DCB /* UBAddUnitsViewController.h */,
+				8C2766AC1DD7FBE4008C7DCB /* UBAddUnitsViewController.m */,
 			);
 			name = "Add to Community";
 			sourceTree = "<group>";
@@ -543,7 +543,7 @@
 				8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */,
 				8C5678A41DD39D8700FAB9B9 /* Constants.m in Sources */,
 				8C2766AA1DD78D07008C7DCB /* UBAddSuperUnitsViewController.m in Sources */,
-				8C2766AD1DD7FBE4008C7DCB /* UBAddUnitViewController.m in Sources */,
+				8C2766AD1DD7FBE4008C7DCB /* UBAddUnitsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
