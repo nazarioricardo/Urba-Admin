@@ -120,6 +120,14 @@
     [[ref child:@"owner"] setValue:owner];
 }
 
++(void)deleteUnitOrSuperUnit:(NSString *)node childId:(NSString *)childId {
+    
+    FIRDatabaseReference *ref = [self databaseRef];
+    ref = [[ref child:node] child:childId];
+    
+    [ref removeValue];
+}
+
 +(NSString *)getCurrentUser {
     return [FIRAuth auth].currentUser.uid;
 }

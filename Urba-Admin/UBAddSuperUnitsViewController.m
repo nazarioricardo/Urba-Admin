@@ -108,6 +108,21 @@
     [self performSegueWithIdentifier:addUnitsSegue sender:self];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSDictionary<NSString *, NSString *> *snapshotDict = _superUnitsArray[indexPath.row];
+        NSString *key = [snapshotDict objectForKey:@"key"];
+        
+        [UBFIRDatabaseManager deleteUnitOrSuperUnit:@"units" childId:key];
+        [self getSuperUnits];
+    }
+}
+
 #pragma mark - Life Cycle
 
 - (void)viewDidLoad {

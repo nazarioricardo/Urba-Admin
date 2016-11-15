@@ -13,7 +13,6 @@
 @interface UBAddUnitsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *actualUnitsTableView;
-@property (weak, nonatomic) IBOutlet UITableView *previewUnitsTableView;
 @property (weak, nonatomic) IBOutlet UITextField *singleUnitTextField;
 @property (weak, nonatomic) IBOutlet UITextField *prefixTextField;
 @property (weak, nonatomic) IBOutlet UITextField *firstNumberTextField;
@@ -104,6 +103,23 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        NSDictionary<NSString *, NSString *> *snapshotDict = _unitsArray[indexPath.row];
+        NSString *key = [snapshotDict objectForKey:@"key"];
+        
+        [UBFIRDatabaseManager deleteUnitOrSuperUnit:@"units" childId:key];
+        [self getUnits];
+    }
+}
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

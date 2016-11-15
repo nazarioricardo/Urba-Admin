@@ -19,6 +19,7 @@ typedef void(^FIRErrorHandler)(NSError *error);
 +(BOOL)checkIfNodeHasChild:(NSString *)node child:(NSString *)child;
 +(void)createNode:(NSString *)node withValue:(NSString *)value forKey:(NSString *)key;
 +(void)createUnitOrSuperUnit:(NSString *)node withValue:(NSString *)value withOwner:(NSString *)owner;
++(void)deleteUnitOrSuperUnit:(NSString *)node childId:(NSString *)childId;
 +(NSString *)getCurrentUser;
 
 @end
