@@ -7,23 +7,29 @@ target 'Urba-Admin' do
 
   # Pods for Urba-Admin
   pod 'Firebase'
+  pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
 
   target 'Urba-AdminTests' do
     inherit! :search_paths
     # Pods for testing
-  pod 'Firebase'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
+    pod 'Firebase'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Messaging'
   end
 
   target 'Urba-AdminUITests' do
     inherit! :search_paths
     # Pods for testing
-  pod 'Firebase'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Database'
+    pod 'Firebase'
+    pod 'Firebase/Core'
+    pod 'Firebase/Auth'
+    pod 'Firebase/Database'
+    pod 'Firebase/Messaging'
   end
 
 end
