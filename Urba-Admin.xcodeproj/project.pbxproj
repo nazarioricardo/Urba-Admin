@@ -78,6 +78,7 @@
 		8C5F2BCA1DD259E200EA0A3D /* UBCreateCommViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBCreateCommViewController.h; sourceTree = "<group>"; };
 		8C5F2BCB1DD259E200EA0A3D /* UBCreateCommViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBCreateCommViewController.m; sourceTree = "<group>"; };
 		8C63A8AE1DD2642B00AEC54B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8C71C1841DDCF2EB00B5BD8F /* Urba-Admin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Urba-Admin.entitlements"; sourceTree = "<group>"; };
 		8C806D1A1DD279FB005D3A3C /* UBLogInAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBLogInAdminViewController.h; sourceTree = "<group>"; };
 		8C806D1B1DD279FB005D3A3C /* UBLogInAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBLogInAdminViewController.m; sourceTree = "<group>"; };
 		8C806D1F1DD295F6005D3A3C /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
@@ -210,6 +211,7 @@
 		8C5F2B961DD24D8400EA0A3D /* Urba-Admin */ = {
 			isa = PBXGroup;
 			children = (
+				8C71C1841DDCF2EB00B5BD8F /* Urba-Admin.entitlements */,
 				8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */,
 				8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */,
 				8C806D1F1DD295F6005D3A3C /* ActivityView.h */,
@@ -343,6 +345,11 @@
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = SGRW3864BW;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					8C5F2BAC1DD24D8500EA0A3D = {
 						CreatedOnToolsVersion = 8.1;
@@ -695,6 +702,7 @@
 			baseConfigurationReference = 8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Urba-Admin/Urba-Admin.entitlements";
 				DEVELOPMENT_TEAM = SGRW3864BW;
 				INFOPLIST_FILE = "Urba-Admin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -708,6 +716,7 @@
 			baseConfigurationReference = 545F4144E84C30836AB653B2 /* Pods-Urba-Admin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Urba-Admin/Urba-Admin.entitlements";
 				DEVELOPMENT_TEAM = SGRW3864BW;
 				INFOPLIST_FILE = "Urba-Admin/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
