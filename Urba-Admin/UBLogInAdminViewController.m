@@ -26,9 +26,13 @@
 
 @implementation UBLogInAdminViewController
 
+#pragma mark - IBActions
+
 - (IBAction)donePressed:(id)sender {    
     [self logIn];
 }
+
+#pragma mark - Private
 
 -(void)logIn {
     
@@ -77,6 +81,26 @@
         }
     }];
 }
+
+#pragma mark - Text View Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == _emailTextField) {
+        [textField resignFirstResponder];
+        [_passwordTextField becomeFirstResponder];
+    } else {
+        [self logIn];
+    }
+    
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

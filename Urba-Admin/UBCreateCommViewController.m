@@ -23,6 +23,8 @@
 
 @implementation UBCreateCommViewController
 
+#pragma mark - IBActions
+
 - (IBAction)donePressed:(id)sender {
     
     if ([_commNameTextField.text isEqualToString:@""] || [_adminNameTextField.text isEqualToString:@""] || [_adminEmailTextField.text isEqualToString:@""] || [_passwordTextField.text isEqualToString:@""] || [_confirmPassTextField.text isEqualToString:@""]) {
@@ -38,7 +40,11 @@
 }
 
 - (IBAction)cancelPressed:(id)sender {
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark - Private
 
 -(void)createCommunity {
     
@@ -64,14 +70,46 @@
                                      FIRDatabaseReference *adminRef = [[FIRDatabase database] reference];
                                      adminRef = [[adminRef child:@"community-admins"] child:user.uid];
                                      
+                                     NSString *communityId = [NSString stringWithFormat:@"%@-%@", _commNameTextField.text, commRef.key];
+                                     
                                      [[adminRef child:@"email"] setValue:user.email];
-                                     [[adminRef child:@"community"] setValue:_commNameTextField.text];
+                                     [[adminRef child:@"community"] setValue:communityId];
+                                     
                                      
                                      [self dismissViewControllerAnimated:YES completion:nil];
                                  }
     }];
     
 }
+
+#pragma mark - Text View Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == _commNameTextField) {
+        [textField resignFirstResponder];
+        [_adminNameTextField becomeFirstResponder];
+    } else if (textField == _adminNameTextField) {
+        [textField resignFirstResponder];
+        [_adminEmailTextField becomeFirstResponder];
+    } else if (textField == _adminEmailTextField){
+        [textField resignFirstResponder];
+        [_passwordTextField resignFirstResponder];
+    } else if (textField == _passwordTextField) {
+        [textField resignFirstResponder];
+        [_confirmPassTextField becomeFirstResponder];
+    } else {
+        [self createCommunity];
+    }
+    
+    return YES;
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [self.view endEditing:YES];
+}
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UBLogInAdminViewController : UIViewController
+@interface UBLogInAdminViewController : UIViewController <UITextViewDelegate>
 
 @end
