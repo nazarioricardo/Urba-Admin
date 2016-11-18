@@ -34,7 +34,8 @@
     
     [UBFIRDatabaseManager createUnitOrSuperUnit:@"units"
                                       withValue:_singleUnitTextField.text
-                                      withOwner:_ownerName];
+                                  withOwnerName:_superUnitName
+                                     andOwnerId:_superUnitId];
 }
 
 - (IBAction)addBatchPressed:(id)sender {
@@ -49,7 +50,8 @@
         
         [UBFIRDatabaseManager createUnitOrSuperUnit:@"units"
                                           withValue:unit
-                                          withOwner:_ownerName];
+                                      withOwnerName:_superUnitName
+                                         andOwnerId:_superUnitId];
     }
 }
 
@@ -62,8 +64,8 @@
 -(void)getUnits {
     
     [UBFIRDatabaseManager getAllValuesFromNode:@"units"
-                                     orderedBy:@"owner"
-                                    filteredBy:_ownerName
+                                     orderedBy:@"owner-id"
+                                    filteredBy:_superUnitId
                             withSuccessHandler:^(NSArray *results) {
                                 
                                 _unitsArray = [NSMutableArray arrayWithArray:results];

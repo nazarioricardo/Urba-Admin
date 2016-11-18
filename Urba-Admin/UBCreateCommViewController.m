@@ -72,9 +72,11 @@
                                      
                                      NSString *communityId = [NSString stringWithFormat:@"%@-%@", _commNameTextField.text, commRef.key];
                                      
-                                     [[adminRef child:@"email"] setValue:user.email];
-                                     [[adminRef child:@"community"] setValue:communityId];
+                                     NSLog(@"Community Id: %@", communityId);
                                      
+                                     [[adminRef child:@"email"] setValue:user.email];
+                                     [[adminRef child:@"community-id"] setValue:commRef.key];
+                                     [[adminRef child:@"community-name"] setValue:_commNameTextField.text];
                                      
                                      [self dismissViewControllerAnimated:YES completion:nil];
                                  }

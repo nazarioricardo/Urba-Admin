@@ -111,13 +111,14 @@
     [[[[ref child:node] childByAutoId] child:key] setValue:value];
 }
 
-+(void)createUnitOrSuperUnit:(NSString *)node withValue:(NSString *)value withOwner:(NSString *)owner {
++(void)createUnitOrSuperUnit:(NSString *)node withValue:(NSString *)value withOwnerName:(NSString *)ownerName andOwnerId:(NSString *)ownerId {
     
     FIRDatabaseReference *ref = [self databaseRef];
     ref = [[ref child:node] childByAutoId];
     
     [[ref child:@"name"] setValue:value];
-    [[ref child:@"owner"] setValue:owner];
+    [[ref child:@"owner-name"] setValue:ownerName];
+    [[ref child:@"owner-id"] setValue:ownerId];
 }
 
 +(void)deleteUnitOrSuperUnit:(NSString *)node childId:(NSString *)childId {

@@ -38,7 +38,8 @@
     } else {
         [UBFIRDatabaseManager createUnitOrSuperUnit:@"super-units"
                                           withValue:_streetNameTextField.text
-                                          withOwner:_ownerName];
+                                      withOwnerName:_communityName
+                                         andOwnerId:_communityId];
     }
 
 }
@@ -53,8 +54,8 @@
 -(void)getSuperUnits {
     
     [UBFIRDatabaseManager getAllValuesFromNode:@"super-units"
-                                     orderedBy:@"owner"
-                                    filteredBy:_ownerName
+                                     orderedBy:@"owner-id"
+                                    filteredBy:_communityId
                             withSuccessHandler:^(NSArray *results) {
                                 
                                 _superUnitsArray = [NSMutableArray arrayWithArray:results];
