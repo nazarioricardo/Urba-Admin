@@ -92,8 +92,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Unpack from results array
-    NSDictionary<NSString *, NSString *> *snapshotDict = _unitsArray[indexPath.row];
-    NSString *name = [snapshotDict objectForKey:@"name"];
+    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _unitsArray[indexPath.row];
+    NSString *name = [snapshotDict valueForKeyPath:@"values.name"];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", name];
     
@@ -114,7 +114,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         NSDictionary<NSString *, NSString *> *snapshotDict = _unitsArray[indexPath.row];
-        NSString *key = [snapshotDict objectForKey:@"key"];
+        NSString *key = [snapshotDict valueForKey:@"id"];
         
         [UBFIRDatabaseManager deleteUnitOrSuperUnit:@"units" childId:key];
         [self getUnits];

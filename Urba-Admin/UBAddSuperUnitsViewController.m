@@ -87,9 +87,9 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    // Unpack from results array
-    NSDictionary<NSString *, NSString *> *snapshotDict = _superUnitsArray[indexPath.row];
-    NSString *name = [snapshotDict objectForKey:@"name"];
+    // Unpack  from results array
+    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _superUnitsArray[indexPath.row];
+    NSString *name = [snapshotDict valueForKeyPath:@"values.name"];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", name];
     
@@ -103,7 +103,7 @@
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
     NSDictionary *currentSnapshot = _superUnitsArray[indexPath.row];
 
-    _selectedKey = currentSnapshot[@"key"];
+    _selectedKey = [currentSnapshot valueForKey:@"id"];
     _selectedName = selectedCell.textLabel.text;
     
     [self performSegueWithIdentifier:addUnitsSegue sender:self];
@@ -117,7 +117,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         NSDictionary<NSString *, NSString *> *snapshotDict = _superUnitsArray[indexPath.row];
-        NSString *key = [snapshotDict objectForKey:@"key"];
+        NSString *key = [snapshotDict valueForKey:@"id"];
         
         [UBFIRDatabaseManager deleteUnitOrSuperUnit:@"units" childId:key];
         [self getSuperUnits];

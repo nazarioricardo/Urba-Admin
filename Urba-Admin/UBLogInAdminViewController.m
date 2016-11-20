@@ -60,8 +60,8 @@
                                                 
                                                 NSDictionary<NSString *, NSString *> *dict = results[0];
                                                 
-                                                _communityName = dict[@"name"];
-                                                _communityKey = dict[@"key"];
+                                                _communityName = [dict valueForKeyPath:@"values.name"];
+                                                _communityKey = [dict valueForKey:@"id"];
                                                 
                                                 NSLog(@"Results: %@", dict);
                                                 [self performSegueWithIdentifier:logInSegue sender:self];

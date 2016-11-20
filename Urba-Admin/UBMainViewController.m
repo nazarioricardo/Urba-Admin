@@ -41,8 +41,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self getCommunity];
     NSLog(@"Community key: %@", _communityKey);
+    NSLog(@"Community name: %@", _communityName);
     self.navigationItem.title = _communityName;
 }
 

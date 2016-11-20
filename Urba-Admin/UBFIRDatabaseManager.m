@@ -137,12 +137,27 @@
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];
     [results enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-      
+        
         FIRDataSnapshot *snapshot = obj;
-        NSString *name = snapshot.value[@"name"];
+        
+        NSMutableDictionary <NSString *, NSString *> *childDict;
+        
+        NSMutableArray *childKeyArr = [[NSMutableArray alloc] init];
+        NSMutableArray *childValArr = [[NSMutableArray alloc] init];
+        
+        for (FIRDataSnapshot *child in snapshot.children.allObjects) {
+            NSString *key = child.key;
+            NSString *value = child.value;
             
-        NSDictionary <NSString *, NSString *> *snapshotDict = [NSDictionary dictionaryWithObjectsAndKeys:name, @"name", snapshot.key, @"key", nil];
-        [temp addObject: snapshotDict];
+            [childKeyArr addObject:key];
+            [childValArr addObject:value];
+        }
+        
+        childDict = [NSMutableDictionary dictionaryWithObjects:childValArr forKeys:childKeyArr];
+        
+        NSDictionary <NSString *, NSArray *> *snapDict = [NSDictionary dictionaryWithObjectsAndKeys: snapshot.key, @"id", childDict, @"values", nil];
+        
+        [temp addObject: snapDict];
     }];
     
     return [NSArray arrayWithArray:temp];
