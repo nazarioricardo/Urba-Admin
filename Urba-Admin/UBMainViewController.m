@@ -14,35 +14,90 @@
 
 @interface UBMainViewController ()
 
+@property (weak, nonatomic) IBOutlet UITableView *feedTableView;
+@property (strong, nonatomic) NSMutableArray *requestsArray;
+
 @end
 
 @implementation UBMainViewController
 
+#pragma mark - Private
+
 - (void)getCommunity {
     
-//    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
-//                                     orderedBy:@"admin-id"
-//                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
-//                            withSuccessHandler:^(NSArray *results) {
-//                                
-//                                NSDictionary<NSString *, NSString *> *dict = results[0];
-//                                
-//                                _communityName = dict[@"name"];
-//                                
+    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
+                                     orderedBy:@"admin-id"
+                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
+                            withSuccessHandler:^(NSArray *results) {
+                                
+                                NSDictionary<NSString *, NSString *> *dict = results[0];
+                                
+                                _communityName = [dict valueForKeyPath:@"values.name"];
+                                
+                                
 //                                NSLog(@"Results: %@", _communityName);
-//                            }
-//                                orErrorHandler:^(NSError *error) {
-//                                    
-//                                    NSLog(@"Error: %@", error.description);
-//                                }];
+                            }
+                                orErrorHandler:^(NSError *error) {
+                                    
+                                    NSLog(@"Error: %@", error.description);
+                                }];
 }
+
+-(void)getUnitRequests {
+    
+    [UBFIRDatabaseManager getAllValuesFromNode:@"requests"
+                                     orderedBy:@"to/id"
+                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
+                            withSuccessHandler:^(NSArray *results) {
+                                
+                                _requestsArray = [NSMutableArray arrayWithArray:results];
+                                [_feedTableView reloadData];
+                                NSLog(@"Results: %@", _requestsArray);
+                                }
+                                orErrorHandler:^(NSError *error) {
+                                    
+                                    NSLog(@"Error: %@", error.description);
+                                }];
+}
+
+#pragma mark - Table View Delegate
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [_requestsArray count];
+}
+
+#pragma mark - Table View Data Source
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        
+    // Unpack  from results array
+    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _requestsArray[indexPath.row];
+    NSString *unit = [snapshotDict valueForKeyPath:@"values.unit.name"];
+    NSString *owner = [snapshotDict valueForKeyPath:@"values.unit.owner"];
+    NSString *address = [NSString stringWithFormat:@"%@ %@", unit, owner];
+//    NSString *type = @"Verification Request";
+//    NSString *from = [snapshotDict valueForKeyPath:@"values.from.name"];
+    
+    NSLog(@"Address %@", address);
+
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", address];
+
+    return cell;
+}
+
+#pragma mark - Life Cycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    NSLog(@"Community key: %@", _communityKey);
-    NSLog(@"Community name: %@", _communityName);
+    [self getUnitRequests];
     self.navigationItem.title = _communityName;
 }
 
@@ -66,7 +121,6 @@
         [suvc setCommunityId:_communityKey];
         [suvc setCommunityName:_communityName];
     }
-
 }
 
 @end

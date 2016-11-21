@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UBMainViewController : UIViewController
+@interface UBMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) NSString *communityName;
 @property (weak, nonatomic) NSString *communityKey;
