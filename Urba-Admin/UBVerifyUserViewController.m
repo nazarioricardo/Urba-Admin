@@ -23,7 +23,7 @@
 - (IBAction)acceptPressed:(id)sender {
     
     [self addUserToUnit];
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)postponePressed:(id)sender {
@@ -42,7 +42,9 @@
     
     NSDictionary *userDict = [NSDictionary dictionaryWithObjectsAndKeys:_userId,@"id",_userName,@"name", nil];
     
-    [UBFIRDatabaseManager addChildToExistingParent:@"units"
+    NSString *unitRef = [NSString stringWithFormat:@"units/%@", _unitId];
+    
+    [UBFIRDatabaseManager addChildToExistingParent:unitRef
                                              child:@"user"
                                          withPairs:userDict];
     

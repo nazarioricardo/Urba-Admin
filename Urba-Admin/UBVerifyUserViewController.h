@@ -14,5 +14,6 @@
 @property (weak, nonatomic) NSString *userId;
 @property (weak, nonatomic) NSString *address;
 @property (weak, nonatomic) NSString *requestId;
+@property (weak, nonatomic) NSString *unitId;
 
 @end

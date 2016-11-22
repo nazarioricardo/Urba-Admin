@@ -20,6 +20,7 @@
 @property (weak, nonatomic) NSString *addressToVerify;
 @property (weak, nonatomic) NSString *userToVerify;
 @property (weak, nonatomic) NSString *userId;
+@property (weak, nonatomic) NSString *unitId;
 @property (weak, nonatomic) NSString *requestId;
 
 @end
@@ -103,6 +104,7 @@
     _userToVerify = [snapshotDict valueForKeyPath:@"values.from.name"];
     _userId = [snapshotDict valueForKeyPath:@"values.from.id"];
     _requestId = [snapshotDict valueForKeyPath:@"id"];
+    _unitId = [snapshotDict valueForKeyPath:@"values.unit.id"];
     
     [self performSegueWithIdentifier:verifySegue sender:self];
 }
@@ -145,6 +147,7 @@
         [uvvc setUserId:_userId];
         [uvvc setAddress:_addressToVerify];
         [uvvc setRequestId:_requestId];
+        [uvvc setUnitId:_unitId];
     }
 }
 
