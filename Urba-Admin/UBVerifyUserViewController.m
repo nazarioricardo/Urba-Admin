@@ -34,6 +34,7 @@
     
     [UBFIRDatabaseManager deleteValue:@"requests"
                               childId:_requestId];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Private

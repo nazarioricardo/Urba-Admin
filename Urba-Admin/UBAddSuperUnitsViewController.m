@@ -76,7 +76,12 @@
 #pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    
+    if (![_superUnitsArray count]) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -114,6 +119,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
         NSDictionary<NSString *, NSString *> *snapshotDict = _superUnitsArray[indexPath.row];
@@ -121,6 +127,15 @@
         
         [UBFIRDatabaseManager deleteValue:@"units" childId:key];
         [self getSuperUnits];
+        
+        NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
+        
+        if (![_superUnitsArray count]) {
+            [indexes addIndex: indexPath.section];
+            [tableView beginUpdates];
+            [tableView deleteSections:indexes withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        }
     }
 }
 

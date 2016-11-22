@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UBMainViewController.h"
 
 @interface UBVerifyUserViewController : UIViewController
 
@@ -15,5 +16,7 @@
 @property (weak, nonatomic) NSString *address;
 @property (weak, nonatomic) NSString *requestId;
 @property (weak, nonatomic) NSString *unitId;
+@property (nonatomic) NSUInteger indexToRemove;
+@property (weak, nonatomic) UBMainViewController *mainvc;
 
 @end

@@ -39,9 +39,7 @@
                                 NSDictionary<NSString *, NSString *> *dict = results[0];
                                 
                                 _communityName = [dict valueForKeyPath:@"values.name"];
-                                
-                                
-//                                NSLog(@"Results: %@", _communityName);
+                                [_feedTableView reloadData];
                             }
                                 orErrorHandler:^(NSError *error) {
                                     
@@ -69,7 +67,12 @@
 #pragma mark - Table View Data Soruce
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    
+    if (![_requestsArray count]) {
+        return 0;
+    } else {
+        return 1;
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -115,8 +118,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self getUnitRequests];
     self.navigationItem.title = _communityName;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self getUnitRequests];
+    NSLog(@"Array: %@", _requestsArray);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -148,6 +155,7 @@
         [uvvc setAddress:_addressToVerify];
         [uvvc setRequestId:_requestId];
         [uvvc setUnitId:_unitId];
+        [uvvc setMainvc:self];
     }
 }
 

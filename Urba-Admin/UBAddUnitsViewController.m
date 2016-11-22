@@ -80,7 +80,13 @@
 #pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    
+    if (![_unitsArray count]) {
+        return 0;
+    } else {
+        return 1;
+    }
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -117,7 +123,17 @@
         NSString *key = [snapshotDict valueForKey:@"id"];
         
         [UBFIRDatabaseManager deleteValue:@"units" childId:key];
+        [_unitsArray removeObjectAtIndex:indexPath.row];
         [self getUnits];
+        
+        NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
+        
+        if (![_unitsArray count]) {
+            [indexes addIndex: indexPath.section];
+            [tableView beginUpdates];
+            [tableView deleteSections:indexes withRowAnimation:UITableViewRowAnimationFade];
+            [tableView endUpdates];
+        }
     }
 }
 
