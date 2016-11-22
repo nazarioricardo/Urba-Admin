@@ -65,7 +65,7 @@
                                 }];
 }
 
-#pragma mark - Table View Delegate
+#pragma mark - Table View Data Soruce
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -74,6 +74,25 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [_requestsArray count];
 }
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    // Unpack  from results array
+    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _requestsArray[indexPath.row];
+    NSString *unit = [snapshotDict valueForKeyPath:@"values.unit.name"];
+    NSString *owner = [snapshotDict valueForKeyPath:@"values.unit.owner"];
+    NSString *address = [NSString stringWithFormat:@"%@ %@", unit, owner];
+    
+    NSLog(@"Address %@", address);
+    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", address];
+    
+    return cell;
+}
+
+#pragma mark - Table View Delegate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -86,25 +105,6 @@
     _requestId = [snapshotDict valueForKeyPath:@"id"];
     
     [self performSegueWithIdentifier:verifySegue sender:self];
-}
-
-#pragma mark - Table View Data Source
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        
-    // Unpack  from results array
-    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _requestsArray[indexPath.row];
-    NSString *unit = [snapshotDict valueForKeyPath:@"values.unit.name"];
-    NSString *owner = [snapshotDict valueForKeyPath:@"values.unit.owner"];
-    NSString *address = [NSString stringWithFormat:@"%@ %@", unit, owner];
-    
-    NSLog(@"Address %@", address);
-
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", address];
-
-    return cell;
 }
 
 #pragma mark - Life Cycle
