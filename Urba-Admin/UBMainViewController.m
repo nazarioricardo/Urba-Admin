@@ -9,6 +9,7 @@
 #import "UBMainViewController.h"
 #import "UBFIRDatabaseManager.h"
 #import "UBAddSuperUnitsViewController.h"
+#import "UBVerifyUserViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
 
@@ -16,6 +17,10 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
 @property (strong, nonatomic) NSMutableArray *requestsArray;
+@property (weak, nonatomic) NSString *addressToVerify;
+@property (weak, nonatomic) NSString *userToVerify;
+@property (weak, nonatomic) NSString *userId;
+@property (weak, nonatomic) NSString *requestId;
 
 @end
 
@@ -70,6 +75,19 @@
     return [_requestsArray count];
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _requestsArray[indexPath.row];
+    NSString *unit = [snapshotDict valueForKeyPath:@"values.unit.name"];
+    NSString *owner = [snapshotDict valueForKeyPath:@"values.unit.owner"];
+    _addressToVerify = [NSString stringWithFormat:@"%@ %@", unit, owner];
+    _userToVerify = [snapshotDict valueForKeyPath:@"values.from.name"];
+    _userId = [snapshotDict valueForKeyPath:@"values.from.id"];
+    _requestId = [snapshotDict valueForKeyPath:@"id"];
+    
+    [self performSegueWithIdentifier:verifySegue sender:self];
+}
+
 #pragma mark - Table View Data Source
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,8 +99,6 @@
     NSString *unit = [snapshotDict valueForKeyPath:@"values.unit.name"];
     NSString *owner = [snapshotDict valueForKeyPath:@"values.unit.owner"];
     NSString *address = [NSString stringWithFormat:@"%@ %@", unit, owner];
-//    NSString *type = @"Verification Request";
-//    NSString *from = [snapshotDict valueForKeyPath:@"values.from.name"];
     
     NSLog(@"Address %@", address);
 
@@ -120,6 +136,15 @@
     
         [suvc setCommunityId:_communityKey];
         [suvc setCommunityName:_communityName];
+    }
+    
+    if ([segue.identifier isEqualToString:verifySegue]) {
+        UBVerifyUserViewController *uvvc = [segue destinationViewController];
+        
+        [uvvc setUserName:_userToVerify];
+        [uvvc setUserId:_userId];
+        [uvvc setAddress:_addressToVerify];
+        [uvvc setRequestId:_requestId];
     }
 }
 

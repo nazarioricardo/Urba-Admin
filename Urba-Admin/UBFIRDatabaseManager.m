@@ -121,7 +121,38 @@
     [[ref child:@"owner-id"] setValue:ownerId];
 }
 
-+(void)deleteUnitOrSuperUnit:(NSString *)node childId:(NSString *)childId {
++(void)addChildByAutoId:(NSString *)child withPairs:(NSDictionary *)dictionary {
+    
+    FIRDatabaseReference *ref = [self databaseRef];
+    
+    ref = [[ref child:child] childByAutoId];
+    
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        
+        NSString *keyString = key;
+        NSString *value = obj;
+        
+        [[ref child:keyString] setValue:value];
+    }];
+}
+
++(void)addChildToExistingParent:(NSString *)parent child:(NSString *)child withPairs:(NSDictionary *)dictionary {
+    
+    FIRDatabaseReference *ref = [self databaseRef];
+    
+    ref = [[ref child:parent] child:child];
+    
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        
+        NSString *keyString = key;
+        NSString *value = obj;
+        
+        [[ref child:keyString] setValue:value];
+    }];
+}
+
+
++(void)deleteValue:(NSString *)node childId:(NSString *)childId {
     
     FIRDatabaseReference *ref = [self databaseRef];
     ref = [[ref child:node] child:childId];

@@ -116,7 +116,7 @@
         NSDictionary<NSString *, NSString *> *snapshotDict = _unitsArray[indexPath.row];
         NSString *key = [snapshotDict valueForKey:@"id"];
         
-        [UBFIRDatabaseManager deleteUnitOrSuperUnit:@"units" childId:key];
+        [UBFIRDatabaseManager deleteValue:@"units" childId:key];
         [self getUnits];
     }
 }

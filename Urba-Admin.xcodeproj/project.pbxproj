@@ -25,6 +25,7 @@
 		8C63A8AF1DD2642B00AEC54B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C63A8AE1DD2642B00AEC54B /* GoogleService-Info.plist */; };
 		8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D1B1DD279FB005D3A3C /* UBLogInAdminViewController.m */; };
 		8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D201DD295F6005D3A3C /* ActivityView.m */; };
+		8C9D1E551DE48EE8008FF01F /* UBVerifyUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D1E541DE48EE8008FF01F /* UBVerifyUserViewController.m */; };
 		B83CD359FD070E873AC7A46B /* libPods-Urba-AdminUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		8C806D1F1DD295F6005D3A3C /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
 		8C806D201DD295F6005D3A3C /* ActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityView.m; sourceTree = "<group>"; };
 		8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin.debug.xcconfig"; sourceTree = "<group>"; };
+		8C9D1E531DE48EE8008FF01F /* UBVerifyUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBVerifyUserViewController.h; sourceTree = "<group>"; };
+		8C9D1E541DE48EE8008FF01F /* UBVerifyUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBVerifyUserViewController.m; sourceTree = "<group>"; };
 		A16DB575CA3BC1D946149158 /* Pods-Urba-AdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.release.xcconfig"; sourceTree = "<group>"; };
 		B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-AdminUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDEC40C0F9069697672CCA6 /* Pods-Urba-AdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 			children = (
 				8C5678AC1DD3B6DF00FAB9B9 /* UBMainViewController.h */,
 				8C5678AD1DD3B6DF00FAB9B9 /* UBMainViewController.m */,
+				8C9D1E531DE48EE8008FF01F /* UBVerifyUserViewController.h */,
+				8C9D1E541DE48EE8008FF01F /* UBVerifyUserViewController.m */,
 			);
 			name = "Main Views";
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C9D1E551DE48EE8008FF01F /* UBVerifyUserViewController.m in Sources */,
 				8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */,
 				8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */,
 				8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */,

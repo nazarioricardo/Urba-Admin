@@ -13,6 +13,6 @@
 extern NSString *const logInSegue;
 extern NSString *const addSuperUnitsSegue;
 extern NSString *const addUnitsSegue;
-extern NSString *const confirmSegue;
+extern NSString *const verifySegue;
 
 @end
