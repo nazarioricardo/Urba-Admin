@@ -34,6 +34,9 @@
     
     [UBFIRDatabaseManager deleteValue:@"requests"
                               childId:_requestId];
+    if ([[_mainvc requestsArray] count] == 1) {
+        [[_mainvc requestsArray] removeAllObjects];
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

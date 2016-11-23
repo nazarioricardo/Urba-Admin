@@ -16,7 +16,6 @@
 @interface UBMainViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *feedTableView;
-@property (strong, nonatomic) NSMutableArray *requestsArray;
 @property (weak, nonatomic) NSString *addressToVerify;
 @property (weak, nonatomic) NSString *userToVerify;
 @property (weak, nonatomic) NSString *userId;
@@ -123,6 +122,13 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self getUnitRequests];
+    if (![_requestsArray count]) {
+    
+        [_feedTableView reloadData];
+    }
+}
+
+-(void)viewDidAppear:(BOOL)animated {
     NSLog(@"Array: %@", _requestsArray);
 }
 
