@@ -17,16 +17,24 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 
+@property (strong, nonatomic) NSString *currentUserEmail;
+@property (strong, nonatomic) NSString *currentUserId;
+
 @end
 
 @implementation UBSettingsViewController
 
 - (IBAction)donePressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];    
 }
 
 - (IBAction)addPressed:(id)sender {
     
+    [self createSecurityUser];
+}
+
+-(void)createSecurityUser {
+ 
     ActivityView *spinner = [ActivityView loadSpinnerIntoView:self.view];
     
     [[FIRAuth auth] createUserWithEmail:_secEmailTextField.text
@@ -37,27 +45,31 @@
                                      NSLog(@"Error: %@", error.description);
                                      [spinner removeSpinner];
                                  } else {
+                                     
+                                     NSLog(@"Current user email: %@", _currentUserEmail);
                                      FIRDatabaseReference *ref = [[FIRDatabase database] reference];
                                      ref = [[ref child:@"security"] child:user.uid];
-                                     [[ref child:@"user-name"] setValue:user.email];
-                                     [[ref child:@"admin-email"] setValue:[UBFIRDatabaseManager getCurrentUserEmail]];
-                                     [[ref child:@"admin-id"] setValue:[UBFIRDatabaseManager getCurrentUser]];
+                                     [[ref child:@"email"] setValue:user.email];
+                                     [[ref child:@"admin-email"] setValue:_currentUserEmail];
+                                     [[ref child:@"admin-id"] setValue:_currentUserId];
                                      [[ref child:@"community-name"] setValue:_communityName];
                                      [[ref child:@"community-id"] setValue:_communityId];
-                                     
-                                     ref = [[ref child:@"communities"] child:_communityId];
-                                     [[ref child:@"sec-id"] setValue:user.uid];
-                                     [[ref child:@"sec-email"] setValue:user.email];
                                      
                                      [spinner removeSpinner];
                                  }
                              }];
+    
+    NSLog(@"Current user: %@", [UBFIRDatabaseManager getCurrentUserEmail]);
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _currentUserEmail = [UBFIRDatabaseManager getCurrentUserEmail];
+    _currentUserId = [UBFIRDatabaseManager getCurrentUser];
+    
+    NSLog(@"Current user email: %@", _currentUserEmail);
 }
 
 - (void)didReceiveMemoryWarning {
