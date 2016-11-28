@@ -38,13 +38,16 @@
                                      [spinner removeSpinner];
                                  } else {
                                      FIRDatabaseReference *ref = [[FIRDatabase database] reference];
-                                     ref = [ref child:@"security"];
-                                     [[ref child:@"user-id"] child:user.uid];
-                                     [[ref child:@"user-name"] child:user.email];
-                                     [[ref child:@"admin-email"] child:[UBFIRDatabaseManager getCurrentUserEmail]];
-                                     [[ref child:@"admin-id"] child:[UBFIRDatabaseManager getCurrentUser]];
-                                     [[ref child:@"community-name"] child:_communityName];
-                                     [[ref child:@"community-id"] child:_communityId];
+                                     ref = [[ref child:@"security"] child:user.uid];
+                                     [[ref child:@"user-name"] setValue:user.email];
+                                     [[ref child:@"admin-email"] setValue:[UBFIRDatabaseManager getCurrentUserEmail]];
+                                     [[ref child:@"admin-id"] setValue:[UBFIRDatabaseManager getCurrentUser]];
+                                     [[ref child:@"community-name"] setValue:_communityName];
+                                     [[ref child:@"community-id"] setValue:_communityId];
+                                     
+                                     ref = [[ref child:@"communities"] child:_communityId];
+                                     [[ref child:@"sec-id"] setValue:user.uid];
+                                     [[ref child:@"sec-email"] setValue:user.email];
                                      
                                      [spinner removeSpinner];
                                  }
