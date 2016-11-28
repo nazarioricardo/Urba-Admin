@@ -14,5 +14,6 @@ NSString *const logInSegue = @"LogInSegue";
 NSString *const addSuperUnitsSegue = @"AddSuperUnitsSegue";
 NSString *const addUnitsSegue = @"AddUnitsSegue";
 NSString *const verifySegue = @"ConfirmSegue";
+NSString *const settingsSegue = @"SettingsSegue";
 
 @end

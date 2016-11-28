@@ -23,6 +23,7 @@
 		8C5F2BBD1DD24D8500EA0A3D /* Urba_AdminUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BBC1DD24D8500EA0A3D /* Urba_AdminUITests.m */; };
 		8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5F2BCB1DD259E200EA0A3D /* UBCreateCommViewController.m */; };
 		8C63A8AF1DD2642B00AEC54B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C63A8AE1DD2642B00AEC54B /* GoogleService-Info.plist */; };
+		8C660B3B1DEC879B0016F9B7 /* UBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C660B3A1DEC879B0016F9B7 /* UBSettingsViewController.m */; };
 		8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D1B1DD279FB005D3A3C /* UBLogInAdminViewController.m */; };
 		8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D201DD295F6005D3A3C /* ActivityView.m */; };
 		8C9D1E551DE48EE8008FF01F /* UBVerifyUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D1E541DE48EE8008FF01F /* UBVerifyUserViewController.m */; };
@@ -79,6 +80,8 @@
 		8C5F2BCA1DD259E200EA0A3D /* UBCreateCommViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBCreateCommViewController.h; sourceTree = "<group>"; };
 		8C5F2BCB1DD259E200EA0A3D /* UBCreateCommViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBCreateCommViewController.m; sourceTree = "<group>"; };
 		8C63A8AE1DD2642B00AEC54B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8C660B391DEC879B0016F9B7 /* UBSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBSettingsViewController.h; sourceTree = "<group>"; };
+		8C660B3A1DEC879B0016F9B7 /* UBSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBSettingsViewController.m; sourceTree = "<group>"; };
 		8C71C1841DDCF2EB00B5BD8F /* Urba-Admin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Urba-Admin.entitlements"; sourceTree = "<group>"; };
 		8C806D1A1DD279FB005D3A3C /* UBLogInAdminViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBLogInAdminViewController.h; sourceTree = "<group>"; };
 		8C806D1B1DD279FB005D3A3C /* UBLogInAdminViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBLogInAdminViewController.m; sourceTree = "<group>"; };
@@ -187,6 +190,7 @@
 				8C5678AD1DD3B6DF00FAB9B9 /* UBMainViewController.m */,
 				8C9D1E531DE48EE8008FF01F /* UBVerifyUserViewController.h */,
 				8C9D1E541DE48EE8008FF01F /* UBVerifyUserViewController.m */,
+				8C660B3C1DEC87A90016F9B7 /* Settings */,
 			);
 			name = "Main Views";
 			sourceTree = "<group>";
@@ -260,6 +264,15 @@
 				8C5F2BBE1DD24D8500EA0A3D /* Info.plist */,
 			);
 			path = "Urba-AdminUITests";
+			sourceTree = "<group>";
+		};
+		8C660B3C1DEC87A90016F9B7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8C660B391DEC879B0016F9B7 /* UBSettingsViewController.h */,
+				8C660B3A1DEC879B0016F9B7 /* UBSettingsViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		8C806D1E1DD27A16005D3A3C /* Welcome Views */ = {
@@ -556,6 +569,7 @@
 				8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */,
 				8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */,
 				8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */,
+				8C660B3B1DEC879B0016F9B7 /* UBSettingsViewController.m in Sources */,
 				8C5F2B991DD24D8400EA0A3D /* main.m in Sources */,
 				8C5678AE1DD3B6DF00FAB9B9 /* UBMainViewController.m in Sources */,
 				8C5678AA1DD3A44000FAB9B9 /* UBFIRDatabaseManager.m in Sources */,

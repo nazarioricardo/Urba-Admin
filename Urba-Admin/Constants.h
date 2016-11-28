@@ -14,5 +14,6 @@ extern NSString *const logInSegue;
 extern NSString *const addSuperUnitsSegue;
 extern NSString *const addUnitsSegue;
 extern NSString *const verifySegue;
+extern NSString *const settingsSegue;
 
 @end

@@ -164,6 +164,10 @@
     return [FIRAuth auth].currentUser.uid;
 }
 
++(NSString *)getCurrentUserEmail {
+    return [FIRAuth auth].currentUser.email;
+}
+
 + (NSArray *)mapResults:(NSArray *)results {
     
     NSMutableArray *temp = [[NSMutableArray alloc] init];

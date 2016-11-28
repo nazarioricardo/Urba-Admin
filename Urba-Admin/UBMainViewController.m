@@ -10,6 +10,7 @@
 #import "UBFIRDatabaseManager.h"
 #import "UBAddSuperUnitsViewController.h"
 #import "UBVerifyUserViewController.h"
+#import "UBSettingsViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
 
@@ -25,6 +26,10 @@
 @end
 
 @implementation UBMainViewController
+
+- (IBAction)settingsPressed:(id)sender {
+    [self performSegueWithIdentifier:settingsSegue sender:self];
+}
 
 #pragma mark - Private
 
@@ -162,6 +167,14 @@
         [uvvc setRequestId:_requestId];
         [uvvc setUnitId:_unitId];
         [uvvc setMainvc:self];
+    }
+    
+    if ([segue.identifier isEqualToString:settingsSegue]) {
+        UINavigationController *nvc = [segue destinationViewController];
+        UBSettingsViewController *svc = (UBSettingsViewController *)[nvc topViewController];
+        
+        [svc setCommunityName:_communityName];
+        [svc setCommunityId:_communityKey];
     }
 }
 

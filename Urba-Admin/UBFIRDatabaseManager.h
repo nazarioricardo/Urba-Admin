@@ -23,5 +23,6 @@ typedef void(^FIRErrorHandler)(NSError *error);
 +(void)addChildToExistingParent:(NSString *)parent child:(NSString *)child withPairs:(NSDictionary *)dictionary;
 +(void)deleteValue:(NSString *)node childId:(NSString *)childId;
 +(NSString *)getCurrentUser;
++(NSString *)getCurrentUserEmail;
 
 @end
