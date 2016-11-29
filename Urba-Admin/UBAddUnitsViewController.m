@@ -32,10 +32,9 @@
 
 - (IBAction)addSinglePressed:(id)sender {
     
-    [UBFIRDatabaseManager createUnitOrSuperUnit:@"units"
-                                      withValue:_singleUnitTextField.text
-                                  withOwnerName:_superUnitName
-                                     andOwnerId:_superUnitId];
+    NSDictionary *unitDict = [NSDictionary dictionaryWithObjectsAndKeys:_singleUnitTextField.text,@"name",_communityName,@"community",_communityId,@"community-id",_superUnitName,@"super-unit",_superUnitId,@"super-unit-id", nil];
+    
+    [UBFIRDatabaseManager addChildByAutoId:@"units" withPairs:unitDict];
 }
 
 - (IBAction)addBatchPressed:(id)sender {
@@ -46,12 +45,10 @@
     
     for (NSInteger i = firstNumber; i <= highestNum; i += incrementor) {
         
-        NSString *unit = [NSString stringWithFormat:@"%@%ld%@", _prefixTextField.text, i, _suffixTextField.text];
+        NSString *unitName = [NSString stringWithFormat:@"%@%ld%@", _prefixTextField.text, i, _suffixTextField.text];
+        NSDictionary *unitDict = [NSDictionary dictionaryWithObjectsAndKeys:unitName,@"name",_communityName,@"community",_communityId,@"community-id",_superUnitName,@"super-unit",_superUnitId,@"super-unit-id", nil];
         
-        [UBFIRDatabaseManager createUnitOrSuperUnit:@"units"
-                                          withValue:unit
-                                      withOwnerName:_superUnitName
-                                         andOwnerId:_superUnitId];
+        [UBFIRDatabaseManager addChildByAutoId:@"units" withPairs:unitDict];
     }
 }
 
@@ -64,7 +61,7 @@
 -(void)getUnits {
     
     [UBFIRDatabaseManager getAllValuesFromNode:@"units"
-                                     orderedBy:@"owner-id"
+                                     orderedBy:@"super-unit-id"
                                     filteredBy:_superUnitId
                             withSuccessHandler:^(NSArray *results) {
                                 

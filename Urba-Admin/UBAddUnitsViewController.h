@@ -12,5 +12,7 @@
 
 @property (weak, nonatomic) NSString *superUnitId;
 @property (weak, nonatomic) NSString *superUnitName;
+@property (weak, nonatomic) NSString *communityId;
+@property (weak, nonatomic) NSString *communityName;
 
 @end

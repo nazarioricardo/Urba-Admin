@@ -36,10 +36,9 @@
     if ([_streetNameTextField.text isEqualToString:@""]) {
         NSLog(@"Please fill in required field");
     } else {
-        [UBFIRDatabaseManager createUnitOrSuperUnit:@"super-units"
-                                          withValue:_streetNameTextField.text
-                                      withOwnerName:_communityName
-                                         andOwnerId:_communityId];
+        
+        NSDictionary *superUnitDict = [NSDictionary dictionaryWithObjectsAndKeys:_streetNameTextField.text,@"name",_communityName,@"community",_communityId,@"community-id", nil];
+        [UBFIRDatabaseManager addChildByAutoId:@"super-units" withPairs:superUnitDict];
     }
 
 }
@@ -54,7 +53,7 @@
 -(void)getSuperUnits {
     
     [UBFIRDatabaseManager getAllValuesFromNode:@"super-units"
-                                     orderedBy:@"owner-id"
+                                     orderedBy:@"community-id"
                                     filteredBy:_communityId
                             withSuccessHandler:^(NSArray *results) {
                                 
@@ -168,6 +167,8 @@
         
         [auvc setSuperUnitId:_selectedKey];
         [auvc setSuperUnitName:_selectedName];
+        [auvc setCommunityId:_communityId];
+        [auvc setCommunityName:_communityName];
 
     }
     
