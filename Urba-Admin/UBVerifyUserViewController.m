@@ -49,12 +49,12 @@
 
 -(void)addUserToUnit {
     
-    NSDictionary *userDict = [NSDictionary dictionaryWithObjectsAndKeys:_userId,@"id",_userName,@"name", nil];
+    NSDictionary *userDict = [NSDictionary dictionaryWithObjectsAndKeys:_userName,@"name", nil];
     
-    NSString *unitRef = [NSString stringWithFormat:@"units/%@", _unitId];
+    NSString *unitRef = [NSString stringWithFormat:@"units/%@/users", _unitId];
     
     [UBFIRDatabaseManager addChildToExistingParent:unitRef
-                                             child:@"user"
+                                             child:_userId
                                          withPairs:userDict];
     
     [UBFIRDatabaseManager deleteValue:@"requests"
