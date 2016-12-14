@@ -73,7 +73,6 @@
                       
                       for (FIRDataSnapshot *snap in _feedArray) {
                           if ([snapshot.key isEqualToString:snap.key]) {
-
                               [deleteArray addObject:[NSNumber numberWithInteger:[_feedArray indexOfObject:snap] ]];
                           }
                       }
@@ -103,14 +102,12 @@
     FIRDatabaseReference *unitRef = [[[[FIRDatabase database] reference] child:unitRefString] child:userId];
     [[unitRef child:@"name"] setValue:user];
     [[unitRef child:@"permissions"] setValue:@"head"];
-    [unitRef removeAllObservers];
 }
 
 -(void)removeRequest:(NSString *)requestId {
 
     FIRDatabaseReference *removeRef = [[[FIRDatabase database] reference] child:@"requests"];
     [[removeRef child:requestId] removeValue];
-    [removeRef removeAllObservers];
     
 }
 
@@ -206,8 +203,6 @@
                        withUserId:[snapshotDict valueForKeyPath:@"values.from.id"]
                           forUnit:[snapshotDict valueForKeyPath:@"values.unit.id"]
                       withRequest:[snapshotDict valueForKeyPath:@"id"]];
-    
-//    [self performSegueWithIdentifier:verifySegue sender:self];
 }
 
 #pragma mark - Life Cycle
@@ -227,7 +222,7 @@
     }
 }
 -(void)viewWillDisappear:(BOOL)animated {
-    [_ref removeAllObservers];
+   
 }
 
 - (void)didReceiveMemoryWarning {
