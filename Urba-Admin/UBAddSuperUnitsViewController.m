@@ -12,13 +12,17 @@
 #import "Constants.h"
 #import "ActivityView.h"
 
+@import FirebaseAuth;
+@import FirebaseDatabase;
+
 @interface UBAddSuperUnitsViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *streetNameTextField;
-@property (weak, nonatomic) IBOutlet UITableView *superUnitsTableView;
+@property (weak, nonatomic) IBOutlet UITableView *feedTable;
 
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSString *ownerName;
-@property (strong, nonatomic) NSMutableArray *superUnitsArray;
+@property (strong, nonatomic) NSMutableArray *feedArray;
 
 @property (weak, nonatomic) NSString *selectedKey;
 @property (weak, nonatomic) NSString *selectedName;
@@ -52,18 +56,60 @@
 
 -(void)getSuperUnits {
     
-    [UBFIRDatabaseManager getAllValuesFromNode:@"super-units"
-                                     orderedBy:@"community-id"
-                                    filteredBy:_communityId
-                            withSuccessHandler:^(NSArray *results) {
-                                
-                                _superUnitsArray = [NSMutableArray arrayWithArray:results];
-                                [_superUnitsTableView reloadData];
-                            }
-                                orErrorHandler:^(NSError *error) {
-                                    
-                                    NSLog(@"Error: %@", error.description);
-                                }];
+    _ref = [[[FIRDatabase database] reference] child:@"visitors"];
+    FIRDatabaseQuery *query = [[_ref queryOrderedByChild:@"community-id"] queryEqualToValue:_communityId];
+    
+    [query observeEventType:FIRDataEventTypeChildAdded
+                  withBlock:^(FIRDataSnapshot *snapshot) {
+                      
+                      if ([snapshot exists]) {
+                          
+                          if (![_feedArray containsObject:snapshot]) {
+                              
+                              if (![_feedArray count]) {
+                                  [_feedArray addObject:snapshot];
+                                  [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationNone];
+//                                  [self hideViewAnimated:_noGuestsLabel hide:YES];
+//                                  [self hideViewAnimated:_feedTable hide:NO];
+                              } else {
+                                  [_feedArray addObject:snapshot];
+                                  [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationTop];
+                              }
+                          }
+                      }
+                  }
+            withCancelBlock:^(NSError *error) {
+//                [self alert:@"Error!" withMessage:error.description];
+            }];
+    
+    [query observeEventType:FIRDataEventTypeChildRemoved
+                  withBlock:^(FIRDataSnapshot *snapshot) {
+                      
+                      NSMutableArray *deleteArray = [[NSMutableArray alloc] init];
+                      
+                      for (FIRDataSnapshot *snap in _feedArray) {
+                          if ([snapshot.key isEqualToString:snap.key]) {
+                              
+                              [deleteArray addObject:[NSNumber numberWithInteger:[_feedArray indexOfObject:snap] ]];
+                          }
+                      }
+                      
+                      [_feedTable beginUpdates];
+                      for (NSNumber *num in deleteArray) {
+                          
+                          if ([_feedArray count] == 1) {
+                              [_feedArray removeObjectAtIndex:[num integerValue]];
+                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+//                              [self hideViewAnimated:_feedTable hide:YES];
+//                              [self hideViewAnimated:_noGuestsLabel hide:NO];
+                          } else {
+                              [_feedArray removeObjectAtIndex:[num integerValue]];
+                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+                          }
+                      }
+                      [_feedTable endUpdates];
+                  }];
+
 }
 
 -(BOOL)checkIfCommunityHasSuperUnits {
@@ -76,15 +122,11 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-    if (![_superUnitsArray count]) {
-        return 0;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_superUnitsArray count];
+    return [_feedArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -92,8 +134,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Unpack  from results array
-    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _superUnitsArray[indexPath.row];
-    NSString *name = [snapshotDict valueForKeyPath:@"values.name"];
+    FIRDataSnapshot *snapshot = _feedArray[indexPath.row];
+    NSDictionary<NSString *, NSDictionary *> *superUnitDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id",snapshot.value,@"values", nil];
+    NSString *name = [superUnitDict valueForKeyPath:@"values.name"];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", name];
     
@@ -105,9 +148,10 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    NSDictionary *currentSnapshot = _superUnitsArray[indexPath.row];
-
-    _selectedKey = [currentSnapshot valueForKey:@"id"];
+    FIRDataSnapshot *snapshot = _feedArray[indexPath.row];
+    NSDictionary<NSString *, NSDictionary *> *superUnitDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id",snapshot.value,@"values", nil];
+    
+    _selectedKey = [superUnitDict valueForKeyPath:@"id"];
     _selectedName = selectedCell.textLabel.text;
     
     [self performSegueWithIdentifier:addUnitsSegue sender:self];
@@ -121,20 +165,11 @@
     
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        NSDictionary<NSString *, NSString *> *snapshotDict = _superUnitsArray[indexPath.row];
-        NSString *key = [snapshotDict valueForKey:@"id"];
+        FIRDataSnapshot *snapshot = _feedArray[indexPath.row];
+        NSDictionary<NSString *, NSDictionary *> *superUnitDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id",snapshot.value,@"values", nil];
+        NSString *key = [superUnitDict valueForKeyPath:@"id"];
         
-        [UBFIRDatabaseManager deleteValue:@"units" childId:key];
-        [self getSuperUnits];
-        
-        NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
-        
-        if (![_superUnitsArray count]) {
-            [indexes addIndex: indexPath.section];
-            [tableView beginUpdates];
-            [tableView deleteSections:indexes withRowAnimation:UITableViewRowAnimationFade];
-            [tableView endUpdates];
-        }
+        [[_ref child:key] removeValue];
     }
 }
 
@@ -149,6 +184,10 @@
     NSLog(@"Owner name: %@", _ownerName);
     
     [self getSuperUnits];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [_ref removeAllObservers];
 }
 
 - (void)didReceiveMemoryWarning {

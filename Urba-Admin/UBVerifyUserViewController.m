@@ -7,12 +7,16 @@
 //
 
 #import "UBVerifyUserViewController.h"
-#import "UBFIRDatabaseManager.h"
 #import "ActivityView.h"
+
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface UBVerifyUserViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *verificationLabel;
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) FIRDatabaseReference *unitRef;
 
 @end
 
@@ -23,11 +27,6 @@
 - (IBAction)acceptPressed:(id)sender {
     
     [self addUserToUnit];
-    [UBFIRDatabaseManager deleteValue:@"requests"
-                              childId:_requestId];
-    if ([[_mainvc requestsArray] count] == 1) {
-        [[_mainvc requestsArray] removeAllObjects];
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -37,11 +36,6 @@
 
 - (IBAction)rejectPressed:(id)sender {
     
-    [UBFIRDatabaseManager deleteValue:@"requests"
-                              childId:_requestId];
-    if ([[_mainvc requestsArray] count] == 1) {
-        [[_mainvc requestsArray] removeAllObjects];
-    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -49,17 +43,10 @@
 
 -(void)addUserToUnit {
     
-    NSDictionary *userDict = [NSDictionary dictionaryWithObjectsAndKeys:_userName,@"name", nil];
+    NSString *unitRefString = [NSString stringWithFormat:@"units/%@/users", _unitId];
     
-    NSString *unitRef = [NSString stringWithFormat:@"units/%@/users", _unitId];
-    
-    [UBFIRDatabaseManager addChildToExistingParent:unitRef
-                                             child:_userId
-                                         withPairs:userDict];
-    
-    [UBFIRDatabaseManager deleteValue:@"requests"
-                              childId:_requestId];
-    
+    _unitRef = [[[[FIRDatabase database] reference] child:unitRefString] child:_userId];
+    [[_unitRef child:@"name"] setValue:_userName];
 }
 
 #pragma mark - Life Cycle
@@ -68,8 +55,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    _ref = [[[FIRDatabase database] reference] child:@"requests"];
+    [_ref child:_requestId];
+    
     NSString *labelString = [NSString stringWithFormat:@"Please verify %@ for %@", _userName, _address];
     _verificationLabel.text = labelString;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [_ref removeAllObservers];
+    [_unitRef removeAllObservers];
 }
 
 - (void)didReceiveMemoryWarning {

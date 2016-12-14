@@ -9,7 +9,8 @@
 #import "UBCreateCommViewController.h"
 #import "ActivityView.h"
 
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface UBCreateCommViewController ()
 
@@ -18,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *adminEmailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPassTextField;
+
+@property (strong, nonatomic) FIRDatabaseReference *commRef;
+@property (strong, nonatomic) FIRDatabaseReference *adminRef;
 
 @end
 
@@ -59,24 +63,24 @@
                                      [spinner removeSpinner];
                                  } else {
                                 
-                                     FIRDatabaseReference *commRef = [[FIRDatabase database] reference];
-                                     commRef = [[commRef child:@"communities"] childByAutoId];
+                                     _commRef = [[FIRDatabase database] reference];
+                                     _commRef = [[_commRef child:@"communities"] childByAutoId];
                                      
-                                     [[commRef child:@"name"] setValue:_commNameTextField.text];
-                                     [[commRef child:@"admin-name"] setValue:_adminNameTextField.text];
-                                     [[commRef child:@"admin-email"] setValue:_adminEmailTextField.text];
-                                     [[commRef child:@"admin-id"] setValue:user.uid];
+                                     [[_commRef child:@"name"] setValue:_commNameTextField.text];
+                                     [[_commRef child:@"admin-name"] setValue:_adminNameTextField.text];
+                                     [[_commRef child:@"admin-email"] setValue:_adminEmailTextField.text];
+                                     [[_commRef child:@"admin-id"] setValue:user.uid];
                                      
-                                     FIRDatabaseReference *adminRef = [[FIRDatabase database] reference];
-                                     adminRef = [[adminRef child:@"community-admins"] child:user.uid];
+                                     _adminRef = [[FIRDatabase database] reference];
+                                     _adminRef = [[_adminRef child:@"community-admins"] child:user.uid];
                                      
-                                     NSString *communityId = [NSString stringWithFormat:@"%@-%@", _commNameTextField.text, commRef.key];
+                                     NSString *communityId = [NSString stringWithFormat:@"%@-%@", _commNameTextField.text, _commRef.key];
                                      
                                      NSLog(@"Community Id: %@", communityId);
                                      
-                                     [[adminRef child:@"email"] setValue:user.email];
-                                     [[adminRef child:@"community-id"] setValue:commRef.key];
-                                     [[adminRef child:@"community-name"] setValue:_commNameTextField.text];
+                                     [[_adminRef child:@"email"] setValue:user.email];
+                                     [[_adminRef child:@"community-id"] setValue:_commRef.key];
+                                     [[_adminRef child:@"community-name"] setValue:_commNameTextField.text];
                                      
                                      [self dismissViewControllerAnimated:YES completion:nil];
                                  }
@@ -116,6 +120,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [_commRef removeAllObservers];
+    [_adminRef removeAllObservers];
 }
 
 - (void)didReceiveMemoryWarning {

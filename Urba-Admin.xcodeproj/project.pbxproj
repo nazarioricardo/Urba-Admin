@@ -167,13 +167,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		8C5678A61DD3A1BE00FAB9B9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		8C5678A71DD3A1DE00FAB9B9 /* Control */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,12 +216,11 @@
 				8C71C1841DDCF2EB00B5BD8F /* Urba-Admin.entitlements */,
 				8C5F2B9A1DD24D8400EA0A3D /* AppDelegate.h */,
 				8C5F2B9B1DD24D8400EA0A3D /* AppDelegate.m */,
-				8C806D1F1DD295F6005D3A3C /* ActivityView.h */,
-				8C806D201DD295F6005D3A3C /* ActivityView.m */,
 				8C5678A21DD39D8700FAB9B9 /* Constants.h */,
 				8C5678A31DD39D8700FAB9B9 /* Constants.m */,
 				8C5678A51DD3A1B300FAB9B9 /* Views */,
-				8C5678A61DD3A1BE00FAB9B9 /* Model */,
+				8C806D1F1DD295F6005D3A3C /* ActivityView.h */,
+				8C806D201DD295F6005D3A3C /* ActivityView.m */,
 				8C5678A71DD3A1DE00FAB9B9 /* Control */,
 				8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */,
 				8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */,

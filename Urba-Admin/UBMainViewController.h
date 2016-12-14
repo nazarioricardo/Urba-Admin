@@ -12,6 +12,5 @@
 
 @property (weak, nonatomic) NSString *communityName;
 @property (weak, nonatomic) NSString *communityKey;
-@property (strong, nonatomic) NSMutableArray *requestsArray;
 
 @end

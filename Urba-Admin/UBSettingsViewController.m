@@ -7,16 +7,17 @@
 //
 
 #import "UBSettingsViewController.h"
-#import "UBFIRDatabaseManager.h"
 #import "ActivityView.h"
 
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface UBSettingsViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *secEmailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *confirmPasswordTextField;
 
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSString *currentUserEmail;
 @property (strong, nonatomic) NSString *currentUserId;
 
@@ -47,29 +48,29 @@
                                  } else {
                                      
                                      NSLog(@"Current user email: %@", _currentUserEmail);
-                                     FIRDatabaseReference *ref = [[FIRDatabase database] reference];
-                                     ref = [[ref child:@"security"] child:user.uid];
-                                     [[ref child:@"email"] setValue:user.email];
-                                     [[ref child:@"admin-email"] setValue:_currentUserEmail];
-                                     [[ref child:@"admin-id"] setValue:_currentUserId];
-                                     [[ref child:@"community-name"] setValue:_communityName];
-                                     [[ref child:@"community-id"] setValue:_communityId];
+                                     _ref = [[FIRDatabase database] reference];
+                                     _ref = [[_ref child:@"security"] child:user.uid];
+                                     [[_ref child:@"email"] setValue:user.email];
+                                     [[_ref child:@"admin-email"] setValue:_currentUserEmail];
+                                     [[_ref child:@"admin-id"] setValue:_currentUserId];
+                                     [[_ref child:@"community-name"] setValue:_communityName];
+                                     [[_ref child:@"community-id"] setValue:_communityId];
                                      
                                      [spinner removeSpinner];
                                  }
                              }];
-    
-    NSLog(@"Current user: %@", [UBFIRDatabaseManager getCurrentUserEmail]);
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _currentUserEmail = [UBFIRDatabaseManager getCurrentUserEmail];
-    _currentUserId = [UBFIRDatabaseManager getCurrentUser];
-    
-    NSLog(@"Current user email: %@", _currentUserEmail);
+    _currentUserEmail = [FIRAuth auth].currentUser.email;
+    _currentUserId = [FIRAuth auth].currentUser.uid;
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [_ref removeAllObservers];
 }
 
 - (void)didReceiveMemoryWarning {

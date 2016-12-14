@@ -12,15 +12,16 @@
 #import "Constants.h"
 #import "ActivityView.h"
 
-@import Firebase;
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface UBLogInAdminViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
-@property (weak, nonatomic) NSString *communityName;
-@property (weak, nonatomic) NSString *communityKey;
+@property (strong, nonatomic) NSString *communityName;
+@property (strong, nonatomic) NSString *communityKey;
 
 @end
 
