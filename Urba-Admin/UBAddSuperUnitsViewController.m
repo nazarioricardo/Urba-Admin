@@ -7,7 +7,6 @@
 //
 
 #import "UBAddSuperUnitsViewController.h"
-#import "UBFIRDatabaseManager.h"
 #import "UBAddUnitsViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
@@ -21,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *feedTable;
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
-@property (strong, nonatomic) NSString *ownerName;
+@property (strong, nonatomic) FIRDatabaseReference *addRef;
 @property (strong, nonatomic) NSMutableArray *feedArray;
 
 @property (weak, nonatomic) NSString *selectedKey;
@@ -35,20 +34,19 @@
 
 - (IBAction)addPressed:(id)sender {
     
-    NSLog(@"Owner name to set: %@", _ownerName);
-    
     if ([_streetNameTextField.text isEqualToString:@""]) {
         NSLog(@"Please fill in required field");
     } else {
         
+        
+        
         NSDictionary *superUnitDict = [NSDictionary dictionaryWithObjectsAndKeys:_streetNameTextField.text,@"name",_communityName,@"community",_communityId,@"community-id", nil];
-        [UBFIRDatabaseManager addChildByAutoId:@"super-units" withPairs:superUnitDict];
+        _addRef = [[[FIRDatabase database] reference] child:@"super-units"];
+        [[_addRef childByAutoId] setValue:superUnitDict];
     }
-
 }
 
 - (IBAction)cancelPressed:(id)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -56,11 +54,15 @@
 
 -(void)getSuperUnits {
     
-    _ref = [[[FIRDatabase database] reference] child:@"visitors"];
+    NSLog(@"Get super-units called with ID: %@", _communityId);
+    
+    _ref = [[[FIRDatabase database] reference] child:@"super-units"];
     FIRDatabaseQuery *query = [[_ref queryOrderedByChild:@"community-id"] queryEqualToValue:_communityId];
     
     [query observeEventType:FIRDataEventTypeChildAdded
                   withBlock:^(FIRDataSnapshot *snapshot) {
+                      
+                      NSLog(@"SNAP: %@", snapshot);
                       
                       if ([snapshot exists]) {
                           
@@ -69,8 +71,6 @@
                               if (![_feedArray count]) {
                                   [_feedArray addObject:snapshot];
                                   [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationNone];
-//                                  [self hideViewAnimated:_noGuestsLabel hide:YES];
-//                                  [self hideViewAnimated:_feedTable hide:NO];
                               } else {
                                   [_feedArray addObject:snapshot];
                                   [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationTop];
@@ -79,6 +79,7 @@
                       }
                   }
             withCancelBlock:^(NSError *error) {
+                NSLog(@"ERROR: %@", error.description);
 //                [self alert:@"Error!" withMessage:error.description];
             }];
     
@@ -89,7 +90,6 @@
                       
                       for (FIRDataSnapshot *snap in _feedArray) {
                           if ([snapshot.key isEqualToString:snap.key]) {
-                              
                               [deleteArray addObject:[NSNumber numberWithInteger:[_feedArray indexOfObject:snap] ]];
                           }
                       }
@@ -99,7 +99,7 @@
                           
                           if ([_feedArray count] == 1) {
                               [_feedArray removeObjectAtIndex:[num integerValue]];
-                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
 //                              [self hideViewAnimated:_feedTable hide:YES];
 //                              [self hideViewAnimated:_noGuestsLabel hide:NO];
                           } else {
@@ -109,19 +109,11 @@
                       }
                       [_feedTable endUpdates];
                   }];
-
-}
-
--(BOOL)checkIfCommunityHasSuperUnits {
-    
-    return [UBFIRDatabaseManager checkIfNodeHasChild:@"super-units"
-                                               child:_ownerName];
 }
 
 #pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
     return 1;
 }
 
@@ -153,7 +145,6 @@
     
     _selectedKey = [superUnitDict valueForKeyPath:@"id"];
     _selectedName = selectedCell.textLabel.text;
-    
     [self performSegueWithIdentifier:addUnitsSegue sender:self];
 }
 
@@ -168,7 +159,6 @@
         FIRDataSnapshot *snapshot = _feedArray[indexPath.row];
         NSDictionary<NSString *, NSDictionary *> *superUnitDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id",snapshot.value,@"values", nil];
         NSString *key = [superUnitDict valueForKeyPath:@"id"];
-        
         [[_ref child:key] removeValue];
     }
 }
@@ -178,11 +168,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    _ownerName = [NSString stringWithFormat:@"%@-%@", _communityName, _communityId];
-    
-    NSLog(@"Owner name: %@", _ownerName);
-    
+    _feedArray = [[NSMutableArray alloc] init];
+    _feedTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self getSuperUnits];
 }
 

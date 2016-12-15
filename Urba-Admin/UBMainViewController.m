@@ -8,7 +8,6 @@
 
 #import "UBMainViewController.h"
 #import "UBAddSuperUnitsViewController.h"
-#import "UBVerifyUserViewController.h"
 #import "UBSettingsViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
@@ -52,7 +51,7 @@
                               
                               if (![_feedArray count]) {
                                   [_feedArray addObject:snapshot];
-                                  [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationNone];
+                                  [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationTop];
 //                                  [self hideViewAnimated:_noGuestsLabel hide:YES];
                                   [self hideViewAnimated:_feedTable hide:NO];
                               } else {
@@ -82,7 +81,7 @@
                           
                           if ([_feedArray count] == 1) {
                               [_feedArray removeObjectAtIndex:[num integerValue]];
-                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
                               [self hideViewAnimated:_feedTable hide:YES];
 //                              [self hideViewAnimated:_noGuestsLabel hide:NO];
                           } else {
@@ -244,17 +243,6 @@
     
         [suvc setCommunityId:_communityKey];
         [suvc setCommunityName:_communityName];
-    }
-    
-    if ([segue.identifier isEqualToString:verifySegue]) {
-        UBVerifyUserViewController *uvvc = [segue destinationViewController];
-        
-        [uvvc setUserName:_userToVerify];
-        [uvvc setUserId:_userId];
-        [uvvc setAddress:_addressToVerify];
-        [uvvc setRequestId:_requestId];
-        [uvvc setUnitId:_unitId];
-        [uvvc setMainvc:self];
     }
     
     if ([segue.identifier isEqualToString:settingsSegue]) {

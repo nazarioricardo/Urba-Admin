@@ -192,8 +192,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="AbH-xF-04A" id="HAu-gO-ZGA"/>
-                                    <outlet property="delegate" destination="AbH-xF-04A" id="xJr-M1-RqS"/>
+                                    <outlet property="dataSource" destination="AbH-xF-04A" id="1OI-Oc-s9Q"/>
+                                    <outlet property="delegate" destination="AbH-xF-04A" id="Po0-VI-4Ii"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -279,8 +279,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="f5V-HZ-U70" id="aNv-pL-BfT"/>
-                                    <outlet property="delegate" destination="f5V-HZ-U70" id="oGF-sa-WZa"/>
+                                    <outlet property="dataSource" destination="f5V-HZ-U70" id="pds-Rw-doB"/>
+                                    <outlet property="delegate" destination="f5V-HZ-U70" id="KBg-Rg-XmY"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAX-UX-qHA">
@@ -392,7 +392,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="actualUnitsTableView" destination="OZB-Yr-Zan" id="0TJ-gZ-Acv"/>
+                        <outlet property="feedTable" destination="OZB-Yr-Zan" id="8nQ-yl-ycw"/>
                         <outlet property="firstNumberTextField" destination="T5H-d1-hf7" id="vue-1t-B7N"/>
                         <outlet property="incrementorTextField" destination="Yzm-u2-81T" id="5ff-S0-q2Y"/>
                         <outlet property="numberOfUnitsTextField" destination="tDZ-Wb-ECM" id="CaR-eK-qlE"/>

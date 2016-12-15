@@ -7,7 +7,6 @@
 //
 
 #import "UBLogInAdminViewController.h"
-#import "UBFIRDatabaseManager.h"
 #import "UBMainViewController.h"
 #import "Constants.h"
 #import "ActivityView.h"
@@ -20,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
+@property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSString *communityName;
 @property (strong, nonatomic) NSString *communityKey;
 
@@ -46,32 +46,24 @@
             [spinner removeSpinner];
         } else {
             
-            FIRDatabaseReference *ref = [[FIRDatabase database] reference];
-            ref = [ref child:@"community-admins"];
-            [ref observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
-                
-                if ([snapshot hasChild:user.uid]) {
+            _ref = [[FIRDatabase database] reference];
+            _ref = [_ref child:@"communities"];
+            FIRDatabaseQuery *query = [[_ref queryOrderedByChild:@"admin-id"] queryEqualToValue:[FIRAuth auth].currentUser.uid];
+            [query observeSingleEventOfType:FIRDataEventTypeChildAdded withBlock:^(FIRDataSnapshot *snapshot) {
+
+                if ([snapshot exists]) {
                     
                     NSLog(@"Admin log in was successful");
+                                        
+                    NSDictionary *communityDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id", snapshot.value,@"values", nil];
                     
-                    [UBFIRDatabaseManager getAllValuesFromNode:@"communities"
-                                                     orderedBy:@"admin-id"
-                                                    filteredBy:[UBFIRDatabaseManager getCurrentUser]
-                                            withSuccessHandler:^(NSArray *results) {
-                                                
-                                                NSDictionary<NSString *, NSString *> *dict = results[0];
-                                                
-                                                _communityName = [dict valueForKeyPath:@"values.name"];
-                                                _communityKey = [dict valueForKey:@"id"];
-                                                
-                                                NSLog(@"Results: %@", dict);
-                                                [self performSegueWithIdentifier:logInSegue sender:self];
-                                            }
-                                                orErrorHandler:^(NSError *error) {
-                                                    
-                                                    NSLog(@"Error: %@", error.description);
-                                                }];
-
+                    _communityName = [communityDict valueForKeyPath:@"values.name"];
+                    _communityKey = [communityDict valueForKey:@"id"];
+                    
+                    NSLog(@"SNAP VALUE: %@", snapshot.value);
+                    [self performSegueWithIdentifier:logInSegue sender:self];
+                    
+                    
                 } else {
                     
                     NSLog(@"Attempted to log in without proper admin credentials");

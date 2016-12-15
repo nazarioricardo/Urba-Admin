@@ -10,7 +10,7 @@
 
 @interface UBMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) NSString *communityName;
-@property (weak, nonatomic) NSString *communityKey;
+@property (strong, nonatomic) NSString *communityName;
+@property (strong, nonatomic) NSString *communityKey;
 
 @end

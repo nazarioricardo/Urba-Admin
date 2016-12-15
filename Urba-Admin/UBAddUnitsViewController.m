@@ -7,12 +7,14 @@
 //
 
 #import "UBAddUnitsViewController.h"
-#import "UBFIRDatabaseManager.h"
 #import "ActivityView.h"
+
+@import FirebaseDatabase;
+@import FirebaseAuth;
 
 @interface UBAddUnitsViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *actualUnitsTableView;
+@property (weak, nonatomic) IBOutlet UITableView *feedTable;
 @property (weak, nonatomic) IBOutlet UITextField *singleUnitTextField;
 @property (weak, nonatomic) IBOutlet UITextField *prefixTextField;
 @property (weak, nonatomic) IBOutlet UITextField *firstNumberTextField;
@@ -20,8 +22,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *numberOfUnitsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *incrementorTextField;
 
+
+@property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) FIRDatabaseReference *addUnitRef;
 @property (strong, nonatomic) NSString *ownerName;
-@property (strong, nonatomic) NSMutableArray *unitsArray;
+@property (strong, nonatomic) NSMutableArray *feedArray;
 
 
 @end
@@ -34,7 +39,8 @@
     
     NSDictionary *unitDict = [NSDictionary dictionaryWithObjectsAndKeys:_singleUnitTextField.text,@"name",_communityName,@"community",_communityId,@"community-id",_superUnitName,@"super-unit",_superUnitId,@"super-unit-id", nil];
     
-    [UBFIRDatabaseManager addChildByAutoId:@"units" withPairs:unitDict];
+    _addUnitRef = [[FIRDatabase database] reference];
+    [[[_addUnitRef child:@"units"] childByAutoId] setValue:unitDict];
 }
 
 - (IBAction)addBatchPressed:(id)sender {
@@ -48,7 +54,8 @@
         NSString *unitName = [NSString stringWithFormat:@"%@%ld%@", _prefixTextField.text, i, _suffixTextField.text];
         NSDictionary *unitDict = [NSDictionary dictionaryWithObjectsAndKeys:unitName,@"name",_communityName,@"community",_communityId,@"community-id",_superUnitName,@"super-unit",_superUnitId,@"super-unit-id", nil];
         
-        [UBFIRDatabaseManager addChildByAutoId:@"units" withPairs:unitDict];
+        _addUnitRef = [[FIRDatabase database] reference];
+        [[[_addUnitRef child:@"units"] childByAutoId] setValue:unitDict];
     }
 }
 
@@ -60,34 +67,70 @@
 
 -(void)getUnits {
     
-    [UBFIRDatabaseManager getAllValuesFromNode:@"units"
-                                     orderedBy:@"super-unit-id"
-                                    filteredBy:_superUnitId
-                            withSuccessHandler:^(NSArray *results) {
-                                
-                                _unitsArray = [NSMutableArray arrayWithArray:results];
-                                [_actualUnitsTableView reloadData];
-                            }
-                                orErrorHandler:^(NSError *error) {
-                                    
-                                    NSLog(@"Error: %@", error.description);
-                                }];
+    _ref = [[[FIRDatabase database] reference] child:@"units"];
+    FIRDatabaseQuery *query = [[_ref queryOrderedByChild:@"super-unit-id"] queryEqualToValue:_superUnitId];
+    
+    [query observeEventType:FIRDataEventTypeChildAdded
+                  withBlock:^(FIRDataSnapshot *snapshot) {
+                      
+                      NSLog(@"SNAP: %@", snapshot);
+                      
+                      if ([snapshot exists]) {
+                          
+                          if (![_feedArray containsObject:snapshot]) {
+                              
+                              if (![_feedArray count]) {
+                                  [_feedArray addObject:snapshot];
+                                  [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationNone];
+                              } else {
+                                  [_feedArray addObject:snapshot];
+                                  [_feedTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:_feedArray.count-1 inSection:0]] withRowAnimation: UITableViewRowAnimationTop];
+                              }
+                          }
+                      }
+                  }
+            withCancelBlock:^(NSError *error) {
+                NSLog(@"ERROR: %@", error.description);
+//                [self alert:@"Error!" withMessage:error.description];
+            }];
+    
+    [query observeEventType:FIRDataEventTypeChildRemoved
+                  withBlock:^(FIRDataSnapshot *snapshot) {
+                      
+                      NSMutableArray *deleteArray = [[NSMutableArray alloc] init];
+                      
+                      for (FIRDataSnapshot *snap in _feedArray) {
+                          if ([snapshot.key isEqualToString:snap.key]) {
+                              [deleteArray addObject:[NSNumber numberWithInteger:[_feedArray indexOfObject:snap] ]];
+                          }
+                      }
+                      
+                      [_feedTable beginUpdates];
+                      for (NSNumber *num in deleteArray) {
+                          
+                          if ([_feedArray count] == 1) {
+                              [_feedArray removeObjectAtIndex:[num integerValue]];
+                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+                              //                              [self hideViewAnimated:_feedTable hide:YES];
+                              //                              [self hideViewAnimated:_noGuestsLabel hide:NO];
+                          } else {
+                              [_feedArray removeObjectAtIndex:[num integerValue]];
+                              [_feedTable deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:[num integerValue] inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+                          }
+                      }
+                      [_feedTable endUpdates];
+                  }];
+    
 }
 
 #pragma mark - Table View Data Source
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    if (![_unitsArray count]) {
-        return 0;
-    } else {
-        return 1;
-    }
-    
+    return 1;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_unitsArray count];
+    return [_feedArray count];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,8 +138,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
     // Unpack from results array
-    NSDictionary<NSString *, NSDictionary *> *snapshotDict = _unitsArray[indexPath.row];
-    NSString *name = [snapshotDict valueForKeyPath:@"values.name"];
+    FIRDataSnapshot *snapshot = _feedArray[indexPath.row];
+    NSDictionary<NSString *, NSDictionary *> *unitDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key, @"id",snapshot.value,@"values", nil];
+    NSString *name = [unitDict valueForKeyPath:@"values.name"];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", name];
     
@@ -107,6 +151,8 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // TODO: Check accounts related to units
+    
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,21 +162,11 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        NSDictionary<NSString *, NSString *> *snapshotDict = _unitsArray[indexPath.row];
-        NSString *key = [snapshotDict valueForKey:@"id"];
+        FIRDataSnapshot *snapshot = _feedArray[indexPath.row];
+        NSDictionary<NSString *, NSDictionary *> *unitDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key, @"id",snapshot.value,@"values", nil];
+        NSString *key = [unitDict valueForKeyPath:@"id"];
         
-        [UBFIRDatabaseManager deleteValue:@"units" childId:key];
-        [_unitsArray removeObjectAtIndex:indexPath.row];
-        [self getUnits];
-        
-        NSMutableIndexSet *indexes = [NSMutableIndexSet indexSet];
-        
-        if (![_unitsArray count]) {
-            [indexes addIndex: indexPath.section];
-            [tableView beginUpdates];
-            [tableView deleteSections:indexes withRowAnimation:UITableViewRowAnimationFade];
-            [tableView endUpdates];
-        }
+        [[_ref child:key] removeValue];
     }
 }
 
@@ -140,12 +176,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    _feedArray = [[NSMutableArray alloc] init];
     self.navigationItem.title = _superUnitName;
-    
+    _feedTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     _ownerName = [NSString stringWithFormat:@"%@-%@", _superUnitName, _superUnitId];
 
-    
     [self getUnits];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [_ref removeAllObservers];
+    [_addUnitRef removeAllObservers];
 }
 
 - (void)didReceiveMemoryWarning {
