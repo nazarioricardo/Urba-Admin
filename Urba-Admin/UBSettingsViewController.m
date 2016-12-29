@@ -7,6 +7,7 @@
 //
 
 #import "UBSettingsViewController.h"
+#import "UBLogInAdminViewController.h"
 #import "ActivityView.h"
 
 @import FirebaseDatabase;
@@ -32,6 +33,27 @@
 - (IBAction)addPressed:(id)sender {
     
     [self createSecurityUser];
+}
+
+- (IBAction)signOutPressed:(id)sender {
+    
+    NSError *signOutError;
+    BOOL status = [[FIRAuth auth] signOut:&signOutError];
+    if (!status) {
+        NSLog(@"Sign out error: %@", signOutError);
+        return;
+    }
+    
+    // After sign out, go to log in screen
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+    UBLogInAdminViewController *livc = [storyboard instantiateViewControllerWithIdentifier:@"LogIn"];
+    [self presentViewController:livc animated:YES completion:nil];
+    
+    
+}
+
+- (IBAction)deletePressed:(id)sender {
+    [self deleteCommunity];
 }
 
 -(void)createSecurityUser {
@@ -61,6 +83,82 @@
                              }];
 }
 
+-(void)deleteCommunity {
+    
+    __block NSString *commId;
+    __block NSString *adminId;
+    
+    _ref = [[FIRDatabase database] reference];
+    
+    // Get community ID
+    FIRUser *currentUser = [FIRAuth auth].currentUser;
+    FIRDatabaseQuery *commQuery = [[[_ref child:@"communities"] queryOrderedByChild:@"admin-id"] queryEqualToValue:currentUser.uid];
+    
+    [commQuery observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+        
+        for (FIRDataSnapshot *community in snapshot.children) {
+            
+            commId = community.key;
+            NSLog(@"Deleting COMM %@", commId);
+            [[[_ref child:@"communities"] child:commId] removeValue];
+            adminId = [snapshot.value valueForKeyPath:@"admin-id"];
+        }
+        
+        // Remove all units
+        FIRDatabaseQuery *unitQuery = [[[_ref child:@"units"] queryOrderedByChild:@"community-id"] queryEqualToValue:commId];
+        [unitQuery observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+            
+            for (FIRDataSnapshot *unit in snapshot.children) {
+                NSLog(@"Deleting UNIT %@", unit.key);
+                [[[_ref child:@"units"]child:unit.key] removeValue];
+            }
+            
+            // Remove all super-units
+            FIRDatabaseQuery *superQuery = [[[_ref child:@"super-units"] queryOrderedByChild:@"community-id"] queryEqualToValue:commId];
+            [superQuery observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+                
+                for (FIRDataSnapshot *superUnit in snapshot.children) {
+                    NSLog(@"Deleting SUPER %@", superUnit.key);
+                    [[[_ref child:@"super-units"] child:superUnit.key] removeValue];
+                }
+                
+                // Remove Community Admin
+                FIRDatabaseQuery *commAdminQuery = [[[_ref child:@"community-admins"] queryOrderedByChild:@"community-id"] queryEqualToValue:commId];
+                [commAdminQuery observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+                   
+                    for (FIRDataSnapshot *commAdmin in snapshot.children) {
+                        [[[_ref child:@"community-admins"] child: commAdmin.key] removeValue];
+                    }
+                    
+                    // Remove security
+                    FIRDatabaseQuery *secQuery = [[[_ref child:@"security"] queryOrderedByChild:@"community-id"] queryEqualToValue:commId];
+                    [secQuery observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot *snapshot) {
+                        
+                        for (FIRDataSnapshot *security in snapshot.children) {
+                            
+                            NSLog(@"Deleting SEC %@", security.key);
+                            [[[_ref child:@"security"] child:security.key] removeValue];
+                        }
+                        
+                        // Delete User
+                        [currentUser deleteWithCompletion:^(NSError *error) {
+                            
+                            if (error) {
+                                //            [self alert:@"Error!" withMessage:error.description];
+                            } else {
+                                
+                                // After sign out, go to log in screen
+                                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+                                UBLogInAdminViewController *livc = [storyboard instantiateViewControllerWithIdentifier:@"LogIn"];
+                                [self presentViewController:livc animated:YES completion:nil];
+                            }
+                        }];
+                    }];
+                }];
+            }];
+        }];
+    }];  
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
