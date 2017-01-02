@@ -21,6 +21,8 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) NSString *currentUserEmail;
 @property (strong, nonatomic) NSString *currentUserId;
+@property (strong, nonatomic) NSString *communityName;
+@property (strong, nonatomic) NSString *communityId;
 
 @end
 
@@ -165,6 +167,9 @@
     // Do any additional setup after loading the view.
     _currentUserEmail = [FIRAuth auth].currentUser.email;
     _currentUserId = [FIRAuth auth].currentUser.uid;
+    
+    _communityId = [_communityDict valueForKeyPath:@"id"];
+    _communityName = [_communityName valueForKeyPath:@"values.name"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {

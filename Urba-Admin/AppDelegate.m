@@ -7,6 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "UBLogInAdminViewController.h"
+#import "UBMainViewController.h"
+#import "UBNavViewController.h"
+#import "ActivityView.h"
 
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 @import UserNotifications;
@@ -73,8 +77,13 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     UIColor *urbaGreen = [UIColor colorWithRed:0.0/255.0 green:190.0/255.0 blue:58.0/255.0 alpha:1];
     
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackTranslucent];
+    [[UINavigationBar appearance] setTranslucent:NO];
     [[UINavigationBar appearance] setBarTintColor:urbaGreen];
     [[UINavigationBar appearance] setClipsToBounds:YES];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:
+     @{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     [[UITabBar appearance] setBarTintColor:urbaGreen];
     [[UITabBar appearance] setClipsToBounds:YES];
     
@@ -128,6 +137,45 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     // Add observer for InstanceID token refresh callback.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tokenRefreshNotification:)
                                                  name:kFIRInstanceIDTokenRefreshNotification object:nil];
+    
+    [[FIRAuth auth] addAuthStateDidChangeListener:^(FIRAuth *auth, FIRUser *user) {
+        
+        [ActivityView loadSpinnerIntoView:self.window.rootViewController.view];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        if (user) {
+            
+            FIRDatabaseReference *ref = [[[FIRDatabase database] reference] child:@"communities"];
+            FIRDatabaseQuery *query = [[ref queryOrderedByChild:@"admin-id"] queryEqualToValue:[FIRAuth auth].currentUser.uid];
+            
+            [query observeEventType:FIRDataEventTypeValue
+                          withBlock:^(FIRDataSnapshot *snapshot) {
+                              
+                              // If logging user exits in one unit or more...
+                              if ([snapshot exists]) {
+                                  
+                                  // Go to home view (NSUserDefaults has the current unit)
+                                  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                                  NSDictionary *communityDict = [defaults objectForKey:@"currentCommunity"];
+                                  UBNavViewController *navView = [storyboard instantiateViewControllerWithIdentifier:@"NavView"];
+                                  UBMainViewController *mainView = (UBMainViewController *)[navView topViewController];
+                                  if (snapshot.childrenCount == 1) {
+                                      for (FIRDataSnapshot *snap in snapshot.children) {
+                                          communityDict = [NSDictionary dictionaryWithObjectsAndKeys:snap.key,@"id", snap.value, @"values", nil];
+                                      }
+                                      [mainView setCommunityDict:communityDict];
+                                      [self.window.rootViewController presentViewController:navView animated:YES completion:nil];
+                                  }
+                              }
+                          }];
+        } else {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:nil forKey:@"currentCommunity"];
+            UBLogInAdminViewController *ulvc = [storyboard instantiateInitialViewController];
+            [self.window.rootViewController presentViewController:ulvc animated:YES completion:nil];
+        }
+    }];
+
     return YES;
 }
 

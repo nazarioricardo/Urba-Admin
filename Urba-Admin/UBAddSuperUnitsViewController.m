@@ -23,6 +23,9 @@
 @property (strong, nonatomic) FIRDatabaseReference *addRef;
 @property (strong, nonatomic) NSMutableArray *feedArray;
 
+@property (strong, nonatomic) NSString *communityName;
+@property (strong, nonatomic) NSString *communityId;
+
 @property (weak, nonatomic) NSString *selectedKey;
 @property (weak, nonatomic) NSString *selectedName;
 
@@ -170,6 +173,10 @@
     // Do any additional setup after loading the view.
     _feedArray = [[NSMutableArray alloc] init];
     _feedTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    _communityName = [_communityDict valueForKeyPath:@"values.name"];
+    _communityId = [_communityDict valueForKeyPath:@"id"];
+    
     [self getSuperUnits];
 }
 
@@ -193,8 +200,7 @@
         
         [auvc setSuperUnitId:_selectedKey];
         [auvc setSuperUnitName:_selectedName];
-        [auvc setCommunityId:_communityId];
-        [auvc setCommunityName:_communityName];
+        [auvc setCommunityDict:_communityDict];
 
     }
     

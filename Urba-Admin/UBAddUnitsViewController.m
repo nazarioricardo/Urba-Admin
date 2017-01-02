@@ -27,6 +27,8 @@
 @property (strong, nonatomic) FIRDatabaseReference *addUnitRef;
 @property (strong, nonatomic) NSString *ownerName;
 @property (strong, nonatomic) NSMutableArray *feedArray;
+@property (strong, nonatomic) NSString *communityName;
+@property (strong, nonatomic) NSString *communityId;
 
 
 @end
@@ -181,6 +183,8 @@
     _feedTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     _ownerName = [NSString stringWithFormat:@"%@-%@", _superUnitName, _superUnitId];
+    _communityName = [_communityDict valueForKeyPath:@"values.name"];
+    _communityId = [_communityDict valueForKeyPath:@"id"];
 
     [self getUnits];
 }

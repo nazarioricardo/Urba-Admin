@@ -25,6 +25,7 @@
 		8C660B3B1DEC879B0016F9B7 /* UBSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C660B3A1DEC879B0016F9B7 /* UBSettingsViewController.m */; };
 		8C806D1C1DD279FB005D3A3C /* UBLogInAdminViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D1B1DD279FB005D3A3C /* UBLogInAdminViewController.m */; };
 		8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C806D201DD295F6005D3A3C /* ActivityView.m */; };
+		8CFC45CE1E1A9F8500243C5A /* UBNavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFC45CD1E1A9F8500243C5A /* UBNavViewController.m */; };
 		B83CD359FD070E873AC7A46B /* libPods-Urba-AdminUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		8C806D1F1DD295F6005D3A3C /* ActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityView.h; sourceTree = "<group>"; };
 		8C806D201DD295F6005D3A3C /* ActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityView.m; sourceTree = "<group>"; };
 		8C92965FCBF40C35134B4A39 /* Pods-Urba-Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-Admin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-Admin/Pods-Urba-Admin.debug.xcconfig"; sourceTree = "<group>"; };
+		8CFC45CC1E1A9F8500243C5A /* UBNavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UBNavViewController.h; sourceTree = "<group>"; };
+		8CFC45CD1E1A9F8500243C5A /* UBNavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UBNavViewController.m; sourceTree = "<group>"; };
 		A16DB575CA3BC1D946149158 /* Pods-Urba-AdminTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminTests/Pods-Urba-AdminTests.release.xcconfig"; sourceTree = "<group>"; };
 		B1DFB620568F674750D2FE06 /* libPods-Urba-AdminUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Urba-AdminUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBDEC40C0F9069697672CCA6 /* Pods-Urba-AdminUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Urba-AdminUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Urba-AdminUITests/Pods-Urba-AdminUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -151,14 +154,16 @@
 			name = "Add to Community";
 			sourceTree = "<group>";
 		};
-		8C5678A51DD3A1B300FAB9B9 /* Views */ = {
+		8C5678A51DD3A1B300FAB9B9 /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
+				8CFC45CC1E1A9F8500243C5A /* UBNavViewController.h */,
+				8CFC45CD1E1A9F8500243C5A /* UBNavViewController.m */,
 				8C806D1E1DD27A16005D3A3C /* Welcome Views */,
 				8C5678AB1DD3B6B900FAB9B9 /* Main Views */,
 				8C2766A71DD78CC2008C7DCB /* Add to Community */,
 			);
-			name = Views;
+			name = "Main Views";
 			sourceTree = "<group>";
 		};
 		8C5678AB1DD3B6B900FAB9B9 /* Main Views */ = {
@@ -203,7 +208,7 @@
 				8C5678A31DD39D8700FAB9B9 /* Constants.m */,
 				8C806D1F1DD295F6005D3A3C /* ActivityView.h */,
 				8C806D201DD295F6005D3A3C /* ActivityView.m */,
-				8C5678A51DD3A1B300FAB9B9 /* Views */,
+				8C5678A51DD3A1B300FAB9B9 /* Main Views */,
 				8C5F2BA01DD24D8500EA0A3D /* Main.storyboard */,
 				8C5F2BA31DD24D8500EA0A3D /* Assets.xcassets */,
 				8C5F2BA51DD24D8500EA0A3D /* LaunchScreen.storyboard */,
@@ -542,6 +547,7 @@
 				8C806D211DD295F6005D3A3C /* ActivityView.m in Sources */,
 				8C5F2BCC1DD259E200EA0A3D /* UBCreateCommViewController.m in Sources */,
 				8C5F2B9C1DD24D8400EA0A3D /* AppDelegate.m in Sources */,
+				8CFC45CE1E1A9F8500243C5A /* UBNavViewController.m in Sources */,
 				8C660B3B1DEC879B0016F9B7 /* UBSettingsViewController.m in Sources */,
 				8C5F2B991DD24D8400EA0A3D /* main.m in Sources */,
 				8C5678AE1DD3B6DF00FAB9B9 /* UBMainViewController.m in Sources */,

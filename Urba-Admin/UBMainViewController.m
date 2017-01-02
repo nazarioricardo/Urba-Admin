@@ -209,9 +209,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = _communityName;
+    self.navigationItem.title = [_communityDict valueForKeyPath:@"values.name"];
     _feedArray = [[NSMutableArray alloc] init];
     _feedTable.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:_communityDict forKey:@"currentCommunity"];
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -241,16 +245,14 @@
         UINavigationController *nvc = [segue destinationViewController];
         UBAddSuperUnitsViewController *suvc = (UBAddSuperUnitsViewController *)[nvc topViewController];
     
-        [suvc setCommunityId:_communityKey];
-        [suvc setCommunityName:_communityName];
+        [suvc setCommunityDict:_communityDict];
     }
     
     if ([segue.identifier isEqualToString:settingsSegue]) {
         UINavigationController *nvc = [segue destinationViewController];
         UBSettingsViewController *svc = (UBSettingsViewController *)[nvc topViewController];
         
-        [svc setCommunityName:_communityName];
-        [svc setCommunityId:_communityKey];
+        [svc setCommunityDict:_communityDict];
     }
 }
 

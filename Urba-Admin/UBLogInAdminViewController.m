@@ -20,9 +20,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
-@property (strong, nonatomic) NSString *communityName;
-@property (strong, nonatomic) NSString *communityKey;
-
+@property (strong, nonatomic) NSDictionary *communityDict;
 @end
 
 @implementation UBLogInAdminViewController
@@ -55,14 +53,8 @@
                     
                     NSLog(@"Admin log in was successful");
                                         
-                    NSDictionary *communityDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id", snapshot.value,@"values", nil];
-                    
-                    _communityName = [communityDict valueForKeyPath:@"values.name"];
-                    _communityKey = [communityDict valueForKey:@"id"];
-                    
-                    NSLog(@"SNAP VALUE: %@", snapshot.value);
+                    _communityDict = [NSDictionary dictionaryWithObjectsAndKeys:snapshot.key,@"id", snapshot.value,@"values", nil];
                     [self performSegueWithIdentifier:logInSegue sender:self];
-                    
                     
                 } else {
                     
@@ -116,8 +108,7 @@
         UBMainViewController *umvc = (UBMainViewController *)[nvc topViewController];
         
         // Pass the selected object to the new view controller.
-        [umvc setCommunityName:_communityName];
-        [umvc setCommunityKey:_communityKey];
+        [umvc setCommunityDict:_communityDict];
     }
 }
 

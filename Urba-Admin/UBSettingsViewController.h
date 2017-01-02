@@ -10,7 +10,6 @@
 
 @interface UBSettingsViewController : UIViewController
 
-@property (weak, nonatomic) NSString *communityName;
-@property (weak, nonatomic) NSString *communityId;
+@property (strong, nonatomic) NSDictionary *communityDict;
 
 @end

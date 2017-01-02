@@ -10,7 +10,6 @@
 
 @interface UBAddSuperUnitsViewController : UIViewController
 
-@property (strong, nonatomic) NSString *communityId;
-@property (weak, nonatomic) NSString *communityName;
+@property (strong, nonatomic) NSDictionary *communityDict;
 
 @end
